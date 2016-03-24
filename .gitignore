@@ -1,3 +1,8 @@
+### AppEngine ###
+# Google App Engine generated folder
+appengine-generated/
+
+# Generated java class
 *.class
 
 # Mobile Tools for Java (J2ME)
