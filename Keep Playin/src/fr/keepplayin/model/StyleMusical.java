@@ -2,12 +2,17 @@ package fr.keepplayin.model ;
 
 import java.util.List;
 
-public class StyleMusical {
-    int id ;
-    Style style ;
-    List<Utilisateur> amateurs ;
+import com.googlecode.objectify.Ref;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
 
-    public int getId() {
+@Entity
+public class StyleMusical {
+    @Id Long id ;
+    Style style ;
+    List<Ref<Utilisateur>> amateursRefs ;
+
+    public Long getId() {
         return id;
     }
 
@@ -15,11 +20,11 @@ public class StyleMusical {
         return style;
     }
 
-    public List<Utilisateur> getAmateurs() {
-        return amateurs;
+    public List<Ref<Utilisateur>> getAmateursRefs() {
+        return amateursRefs;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -27,7 +32,7 @@ public class StyleMusical {
         this.style = style;
     }
 
-    public void setAmateurs(List<Utilisateur> amateurs) {
-        this.amateurs = amateurs;
+    public void setAmateursRefs(List<Ref<Utilisateur>> amateurs) {
+        this.amateursRefs = amateurs;
     }
 }

@@ -2,19 +2,24 @@ package fr.keepplayin.model ;
 
 import java.util.Date;
 
+import com.googlecode.objectify.Ref;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
+
+@Entity
 public class Notification {
-    int id ;
-    Utilisateur cible ;
+    @Id Long id ;
+    Ref<Utilisateur> cibleRef ;
     Date dateNotification ;
     String message ;
     boolean vu ;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public Utilisateur getCible() {
-        return cible;
+    public Ref<Utilisateur> getCible() {
+        return cibleRef;
     }
 
     public Date getDateNotification() {
@@ -29,12 +34,12 @@ public class Notification {
         return vu;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public void setCible(Utilisateur cible) {
-        this.cible = cible;
+    public void setCibleRef(Ref<Utilisateur> cible) {
+        this.cibleRef = cible;
     }
 
     public void setDateNotification(Date dateNotification) {

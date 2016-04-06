@@ -2,14 +2,19 @@ package fr.keepplayin.model ;
 
 import java.util.Date;
 
-public class Commentaire {
-    int id ;
-    String message ;
-    Utilisateur auteur ;
-    Date dateDeCommentaire ;
-    Publication publicationCommentee ;
+import com.googlecode.objectify.Ref;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
 
-    public int getId() {
+@Entity
+public class Commentaire {
+    @Id Long id ;
+    String message ;
+    Ref<Utilisateur> auteurRef ;
+    Date dateDeCommentaire ;
+    Ref<Publication> publicationCommenteeRef ;
+
+    public Long getId() {
         return id;
     }
 
@@ -17,19 +22,19 @@ public class Commentaire {
         return message;
     }
 
-    public Utilisateur getAuteur() {
-        return auteur;
+    public Ref<Utilisateur> getAuteurRef() {
+        return auteurRef;
     }
 
     public Date getDateDeCommentaire() {
         return dateDeCommentaire;
     }
 
-    public Publication getPublicationCommentee() {
-        return publicationCommentee;
+    public Ref<Publication> getPublicationCommenteeRef() {
+        return publicationCommenteeRef;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -37,15 +42,15 @@ public class Commentaire {
         this.message = message;
     }
 
-    public void setAuteur(Utilisateur auteur) {
-        this.auteur = auteur;
+    public void setAuteurRef(Ref<Utilisateur> auteur) {
+        this.auteurRef = auteur;
     }
 
     public void setDateDeCommentaire(Date dateDeCommentaire) {
         this.dateDeCommentaire = dateDeCommentaire;
     }
 
-    public void setPublicationCommentee(Publication publicationCommentee) {
-        this.publicationCommentee = publicationCommentee;
+    public void setPublicationCommenteeRef(Ref<Publication> publicationCommentee) {
+        this.publicationCommenteeRef = publicationCommentee;
     }
 }

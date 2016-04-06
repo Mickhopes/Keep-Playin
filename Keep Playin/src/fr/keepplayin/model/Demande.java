@@ -2,19 +2,22 @@ package fr.keepplayin.model ;
 
 import java.util.Date;
 
+import com.googlecode.objectify.Ref;
+import com.googlecode.objectify.annotation.Id;
+
 public abstract class Demande {
-    int id ;
-    Utilisateur source ;
+    @Id Long id ;
+    Ref<Utilisateur> sourceRef ;
     String message ;
     Date dateDemande ;
     boolean acceptee ;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public Utilisateur getSource() {
-        return source;
+    public Ref<Utilisateur> getSourceRef() {
+        return sourceRef;
     }
 
     public String getMessage() {
@@ -29,12 +32,12 @@ public abstract class Demande {
         return acceptee;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public void setSource(Utilisateur source) {
-        this.source = source;
+    public void setSourceRef(Ref<Utilisateur> source) {
+        this.sourceRef = source;
     }
 
     public void setMessage(String message) {

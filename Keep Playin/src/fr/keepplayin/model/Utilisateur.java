@@ -4,25 +4,31 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import com.googlecode.objectify.Ref;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
+
+@Entity
 public class Utilisateur {
-    int id ;
-    String nom ;
-    String prenom ;
-    String nomDeScene ;
-    String email ;
+    @Id Long id ;
+    @Index String nom ;
+    @Index String prenom ;
+    @Index String nomDeScene ;
+    @Index String email ;
     String mobile ;
     String mdp ; // conserver seulement le hash
     Date dateDeNaissance ;
     String sexe ;
     Departement dpt ;
-    Instrument instrumentPrincipal ;
+    Ref<Instrument> instrumentPrincipalRef ;
     Date debutApprentissage ;
     Niveau niveauInstrumentPrincipal ;
-    Set<Instrument> instrumentsSecondaires ;
-    Set<StyleMusical> stylesPreferes ;
-    List<Utilisateur> amis ;
+    List<Ref<Instrument>> instrumentsSecondairesRefs ;
+    List<Ref<StyleMusical>> stylesPreferesRefs ;
+    List<Ref<Utilisateur>> amisRefs ;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -62,8 +68,8 @@ public class Utilisateur {
         return dpt;
     }
 
-    public Instrument getInstrumentPrincipal() {
-        return instrumentPrincipal;
+    public Ref<Instrument> getInstrumentPrincipalRef() {
+        return instrumentPrincipalRef;
     }
 
     public Date getDebutApprentissage() {
@@ -74,23 +80,23 @@ public class Utilisateur {
         return niveauInstrumentPrincipal;
     }
 
-    public Set<Instrument> getInstrumentsSecondaires() {
-        return instrumentsSecondaires;
+    public List<Ref<Instrument>> getInstrumentsSecondairesRefs() {
+        return instrumentsSecondairesRefs;
     }
 
-    public Set<StyleMusical> getStylesPreferes() {
-        return stylesPreferes;
+    public List<Ref<StyleMusical>> getStylesPreferesRefs() {
+        return stylesPreferesRefs;
     }
 
-    public List<Utilisateur> getAmis() {
-        return amis;
+    public List<Ref<Utilisateur>> getAmisRefs() {
+        return amisRefs;
     }
 
-    public void setAmis(List<Utilisateur> amis) {
-        this.amis = amis;
+    public void setAmisRefs(List<Ref<Utilisateur>> amis) {
+        this.amisRefs = amis;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -130,8 +136,8 @@ public class Utilisateur {
         this.dpt = dpt;
     }
 
-    public void setInstrumentPrincipal(Instrument instrumentPrincipal) {
-        this.instrumentPrincipal = instrumentPrincipal;
+    public void setInstrumentPrincipalRef(Ref<Instrument> instrumentPrincipal) {
+        this.instrumentPrincipalRef = instrumentPrincipal;
     }
 
     public void setDebutApprentissage(Date debutApprentissage) {
@@ -142,11 +148,11 @@ public class Utilisateur {
         this.niveauInstrumentPrincipal = niveauInstrumentPrincipal;
     }
 
-    public void setInstrumentsSecondaires(Set<Instrument> instrumentsSecondaires) {
-        this.instrumentsSecondaires = instrumentsSecondaires;
+    public void setInstrumentsSecondairesRefs(List<Ref<Instrument>> instrumentsSecondaires) {
+        this.instrumentsSecondairesRefs = instrumentsSecondaires;
     }
 
-    public void setStylesPreferes(Set<StyleMusical> stylesPreferes) {
-        this.stylesPreferes = stylesPreferes;
+    public void setStylesPreferesRefs(List<Ref<StyleMusical>> stylesPreferes) {
+        this.stylesPreferesRefs = stylesPreferes;
     }
 }

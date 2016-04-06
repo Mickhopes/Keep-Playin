@@ -2,13 +2,18 @@ package fr.keepplayin.model ;
 
 import java.util.List;
 
+import com.googlecode.objectify.Ref;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
+
+@Entity
 public class Instrument {
-    int id;
+    @Id Long id;
     TypeInstrument type;
     NomInstrument nom;
-    List<Utilisateur> pratiquants ; // pratiquants de cet instrument en instrument principal ou en instrument secondaire
+    List<Ref<Utilisateur>> pratiquantsRefs ; // pratiquants de cet instrument en instrument principal ou en instrument secondaire
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -20,11 +25,11 @@ public class Instrument {
         return nom;
     }
 
-    public List<Utilisateur> getPratiquants() {
-        return pratiquants;
+    public List<Ref<Utilisateur>> getPratiquantsRefs() {
+        return pratiquantsRefs;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -36,7 +41,7 @@ public class Instrument {
         this.nom = nom;
     }
 
-    public void setPratiquants(List<Utilisateur> pratiquants) {
-        this.pratiquants = pratiquants;
+    public void setPratiquantsRefs(List<Ref<Utilisateur>> pratiquants) {
+        this.pratiquantsRefs = pratiquants;
     }
 }

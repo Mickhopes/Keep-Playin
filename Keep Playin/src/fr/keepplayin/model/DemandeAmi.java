@@ -1,13 +1,17 @@
 package fr.keepplayin.model ;
 
-public class DemandeAmi extends Demande{
-    Utilisateur cible ;
+import com.googlecode.objectify.Ref;
+import com.googlecode.objectify.annotation.Entity;
 
-    public Utilisateur getCible() {
-        return cible;
+@Entity
+public class DemandeAmi extends Demande{
+    Ref<Utilisateur> cibleRef ;
+
+    public Ref<Utilisateur> getCible() {
+        return cibleRef;
     }
 
-    public void setCible(Utilisateur cible) {
-        this.cible = cible;
+    public void setCibleRef(Ref<Utilisateur> cible) {
+        this.cibleRef = cible;
     }
 }

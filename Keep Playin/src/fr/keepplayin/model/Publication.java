@@ -2,13 +2,18 @@ package fr.keepplayin.model ;
 
 import java.util.Date;
 
+import com.googlecode.objectify.Ref;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
+
+@Entity
 public class Publication {
-    int id ;
+    @Id Long id ;
     String message ;
-    Utilisateur auteur ;
+    Ref<Utilisateur> auteurRef ;
     Date dateDePublication ;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -16,15 +21,15 @@ public class Publication {
         return message;
     }
 
-    public Utilisateur getAuteur() {
-        return auteur;
+    public Ref<Utilisateur> getAuteurRef() {
+        return auteurRef;
     }
 
     public Date getDateDePublication() {
         return dateDePublication;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -32,8 +37,8 @@ public class Publication {
         this.message = message;
     }
 
-    public void setAuteur(Utilisateur auteur) {
-        this.auteur = auteur;
+    public void setAuteurRef(Ref<Utilisateur> auteur) {
+        this.auteurRef = auteur;
     }
 
     public void setDateDePublication(Date dateDePublication) {
