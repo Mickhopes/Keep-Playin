@@ -1,3 +1,5 @@
+package fr.keepplayin.model ;
+
 import java.util.Date;
 
 public abstract class Demande {
