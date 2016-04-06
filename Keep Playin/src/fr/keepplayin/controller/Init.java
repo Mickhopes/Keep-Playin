@@ -41,6 +41,7 @@ public class Init extends HttpServlet {
 		} else {
 			response.sendRedirect("Profil");
 		}*/
+		response.sendRedirect("index.html");
 	}
 
 	/**
