@@ -1,3 +1,5 @@
+package fr.keepplayin.model ;
+
 public enum Departement {
     AIN("01","Ain","Auvergne-Rhône-Alpes"),
     AISNE("02","Aisne","Nord-Pas-de-Calais-Picardie"),

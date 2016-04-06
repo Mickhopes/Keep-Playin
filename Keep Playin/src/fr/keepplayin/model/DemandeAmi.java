@@ -1,3 +1,5 @@
+package fr.keepplayin.model ;
+
 public class DemandeAmi extends Demande{
     Utilisateur cible ;
 

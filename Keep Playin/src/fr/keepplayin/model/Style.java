@@ -1,6 +1,5 @@
-/**
- * Created by mathilde on 04/04/16.
- */
+package fr.keepplayin.model ;
+
 public enum Style {
     ROCK,
     HARDROCK,
