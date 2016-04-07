@@ -11,6 +11,10 @@ public class StyleMusical {
     @Id Long id ;
     Style style ;
     List<Ref<Utilisateur>> amateursRefs ;
+    
+    public StyleMusical(Style style) {
+    	this.style = style;
+    }
 
     public Long getId() {
         return id;

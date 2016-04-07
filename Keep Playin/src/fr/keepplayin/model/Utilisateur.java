@@ -1,5 +1,6 @@
 package fr.keepplayin.model ;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -8,26 +9,71 @@ import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import com.googlecode.objectify.annotation.Load;
 
 @Entity
 public class Utilisateur {
-    @Id Long id ;
-    @Index String nom ;
-    @Index String prenom ;
-    @Index String nomDeScene ;
-    @Index String email ;
-    String mobile ;
-    String mdp ; // conserver seulement le hash
-    Date dateDeNaissance ;
-    String sexe ;
-    Departement dpt ;
-    Ref<Instrument> instrumentPrincipalRef ;
-    Date debutApprentissage ;
-    Niveau niveauInstrumentPrincipal ;
-    List<Ref<Instrument>> instrumentsSecondairesRefs ;
-    List<Ref<StyleMusical>> stylesPreferesRefs ;
-    List<Ref<Utilisateur>> amisRefs ;
+    private @Id Long id ;
+    private @Index String nom ;
+    private @Index String prenom ;
+    private @Index String nomDeScene ;
+    private @Index String email ;
+    private String mobile ;
+    private String mdp ; // conserver seulement le hash
+    private Date dateDeNaissance ;
+    private String sexe ;
+    private Departement dpt ;
+    private @Load Ref<Instrument> instrumentPrincipalRef ;
+    private Date debutApprentissage ;
+    private Niveau niveauInstrumentPrincipal ;
+    private List<Ref<Instrument>> instrumentsSecondairesRefs ;
+    private List<Ref<StyleMusical>> stylesPreferesRefs ;
+    private @Index List<Ref<Utilisateur>> amisRefs ;
+    
+    public Utilisateur() {
+    	instrumentsSecondairesRefs = new ArrayList<Ref<Instrument>>();
+    	stylesPreferesRefs = new ArrayList<Ref<StyleMusical>>();
+    	amisRefs = new ArrayList<Ref<Utilisateur>>();
+    }
 
+    public Utilisateur(String nom, String prenom, String nomDeScene, String email, String mdp, Date dateDeNaissance, String sexe) {
+    	this.nom = nom;
+    	this.prenom = prenom;
+    	this.nomDeScene = nomDeScene;
+    	this.email = email;
+    	this.mdp = mdp;
+    	this.dateDeNaissance = dateDeNaissance;
+    	this.sexe = sexe;
+    	
+    	instrumentsSecondairesRefs = new ArrayList<Ref<Instrument>>();
+    	stylesPreferesRefs = new ArrayList<Ref<StyleMusical>>();
+    	amisRefs = new ArrayList<Ref<Utilisateur>>();
+    }
+    
+    public void ajouterInstrumentSecondaire(Instrument instrumentSecondaire) {
+    	instrumentsSecondairesRefs.add(Ref.create(instrumentSecondaire));
+    }
+    
+    public void supprimerInstrumentSecondaire(Ref<Instrument> instrumentSecondaire) {
+    	instrumentsSecondairesRefs.remove(instrumentSecondaire);
+    }
+    
+    public void ajouterStylePrefere(StyleMusical styleMusical) {
+    	stylesPreferesRefs.add(Ref.create(styleMusical));
+    }
+    
+    public void supprimerStylePrefere(Ref<StyleMusical> styleMusical) {
+    	stylesPreferesRefs.remove(styleMusical);
+    }
+    
+    public void ajouterAmi(Utilisateur u) {
+    	amisRefs.add(Ref.create(u));
+    }
+    
+    public void supprimerAmi(Ref<Utilisateur> u) {
+    	amisRefs.remove(u);
+    }
+    
     public Long getId() {
         return id;
     }
@@ -136,8 +182,8 @@ public class Utilisateur {
         this.dpt = dpt;
     }
 
-    public void setInstrumentPrincipalRef(Ref<Instrument> instrumentPrincipal) {
-        this.instrumentPrincipalRef = instrumentPrincipal;
+    public void setInstrumentPrincipal(Instrument instrumentPrincipal) {
+        this.instrumentPrincipalRef = Ref.create(instrumentPrincipal);
     }
 
     public void setDebutApprentissage(Date debutApprentissage) {
