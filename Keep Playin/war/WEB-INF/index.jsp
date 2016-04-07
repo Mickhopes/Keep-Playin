@@ -21,7 +21,7 @@
         <h3 class="text-muted">Project name</h3>
       </div> -->
 	
-      <div class="jumbotron">
+      <div class="jumbotron image-accueil">
         <span class="welcome">Bienvenue sur <br>Keep Playin' !</span>
         <p class="lead">Si vous êtes nouveau par ici, lancez-vous et inscrivez-vous via le formulaire. Sinon connectez-vous grâce à la barre de navigation en haut.</p>
 <!--         <p><a class="btn btn-lg btn-success" href="#" role="button">Je m'inscris !</a></p> -->

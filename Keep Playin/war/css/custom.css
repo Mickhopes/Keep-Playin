@@ -179,6 +179,17 @@ legend{
   margin-top: -80px;
 }
 
+.image-accueil{
+ /* background-color: grey;*/
+  background: #000 url("../music-world-wide.jpg") center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+  overflow: hidden;
+  /*text-shadow: black 0.4em 0.4em 0.4em;  */   
+  text-shadow: #000000 2px 2px, #000000 -1px 2px, #000000 -1px -1px, #000000 2px -1px;
+}
+
 body {
   background-color: #f2f2f2;
 }
@@ -205,12 +216,20 @@ body {
   padding-top: 10px;
 }
 
+.margin_comment{
+  margin-top:-19px;
+}
+
 .vertical-resize {
   resize: vertical;
 }
 
 .height-105 {
   height: 105px;
+}
+
+.height-comment{
+  height: 50px;
 }
 
 #test {
@@ -229,6 +248,24 @@ body {
   width:80px;
   height:80px;
   
+}
+
+.text-publi{
+  font-size:12px;
+}
+
+.name-publi{
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.text-comment{
+  font-size: 10px;
+}
+
+.name-comment{
+  font-size: 12px;
+  font-weight: bold;
 }
 
 

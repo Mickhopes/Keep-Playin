@@ -10,6 +10,8 @@
 
 <div class="container profil-container">
   <div class="infos-profil col-md-4 border shadow">
+
+  <!-- AVATAR -->
     <div class="photo-profil col-md-12">
       <div class="photo-container col-md-6">
         <img src="merlin.jpg" class="photo">
@@ -24,120 +26,72 @@
         <span class="birthday-info"> 01/01/1133 (883 ans)</span>
       </div>
     </div>
+    <!-- INFOS -->
+    <div class="infos-container col-md-12">
+    <span> blabla </span>
+    <span> blabla </span>
+    </div>
   </div>
 
   <div class="publis-profil col-md-8">
     <!-- Debut zone d'affichage du flux -->
-        <!-- Model 1 -->
         <div class="thumbnail border shadow padding_top">
           <div class="row">
             <div class="col-md-3">
               <img src="merlin.jpg" alt="Avatar du post" class="img-thumbnail height-105" >
             </div>
-            <div class="col-md-9">
-              <p class="float-left">Maurice D.</p>
+            <div class="col-md-9 name-publi">
+              <p class="float-left">Merlin l'Enchanteur</p>
               <p class="float-right">Il y a 10 min</p>
             </div>
-            <div class=" col-md-9">
-              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
+            <div class=" col-md-9 text-publi">
+              <span>Qu'est ce qui est petit et marron ? </span>
             </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-md-3">
-              <img src="merlin.jpg" alt="Avatar du post" class="img-thumbnail height-105" >
-            </div>
-            <div class="col-md-9">
-              <p class="float-left">Maurice D.</p>
-              <p class="float-right">Il y a 10 min</p>
-            </div>
-            <div class=" col-md-9">
-              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
-            </div>
-          </div>
+        	</div>
         </div>
-        <!-- Fin Model 1 -->
-        <!-- Model 2 -->
-        <div class="thumbnail border shadow padding_top">
+        <div class="thumbnail border shadow col-md-10 col-md-offset-2 margin_comment">
+            <div class="row">
+            	<div class="col-md-2">
+            		<img src="elias.jpg" alt="Avatar du commentaire" class="img-thumbnail height-comment">
+        		</div>
+        		<div class="col-md-10 name-comment">
+        			<p class="float-left"> Elias de Kelliwic'h</p>
+        			<p class="float-right"> Il y a 5 min </p>
+        		</div>
+        		<div class="col-md-6 text-comment">
+        			<span> Un marron.</span>
+        		</div>
+    		</div>
+    		<hr>
+    		<div class="row">
+            	<div class="col-md-2">
+            		<img src="merlin.jpg" alt="Avatar du commentaire" class="img-thumbnail height-comment">
+        		</div>
+        		<div class="col-md-10 name-comment">
+        			<p class="float-left"> Merlin l'Enchtanteur</p>
+        			<p class="float-right"> Il y a 3 min </p>
+        		</div>
+        		<div class="col-md-6 text-comment">
+        			<span> Putain il est fort ce con !</span>
+        		</div>
+    		</div>
+		</div>
+
+        <div class="thumbnail border shadow padding_top col-md-12">
           <div class="row">
             <div class="col-md-3">
               <img src="merlin.jpg" alt="Avatar du post" class="img-thumbnail height-105" >
             </div>
-            <div class="col-md-9">
-              <p class="float-left">Maurice D.</p>
-              <p class="float-right">Il y a 10 min</p>
+            <div class="col-md-9 name-publi">
+              <p class="float-left">Merlin l'Enchanteur</p>
+              <p class="float-right">Il y a 15 min</p>
             </div>
-            <div class=" col-md-9">
-              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
-            </div>
-          </div>
-        </div>
-        <div class="thumbnail border shadow padding_top">
-          <div class="row">
-            <div class="col-md-3">
-              <img src="merlin.jpg" alt="Avatar du post" class="img-thumbnail height-105" >
-            </div>
-            <div class="col-md-9">
-              <p class="float-left">Maurice D.</p>
-              <p class="float-right">Il y a 10 min</p>
-            </div>
-            <div class=" col-md-9">
-              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
+            <div class=" col-md-9 text-publi">
+              <span>Quand je dis que Rome est à la Cité ce que la chèvre est au fromage de chèvre, je veux dire que c'est le petit plus qu'y est corollaire au noyau mais qui est pas directement dans le cœur du fruit ! </span>
             </div>
           </div>
         </div>
         <!-- Fin Model 2 -->
-        <!-- Model 3 -->
-        <div class="row">
-          <div class="col-md-3">
-            <div class="thumbnail shadow">
-              <img id="test" src="merlin.jpg" alt="Avatar du post" class="img-thumbnail" >
-            </div>
-          </div>
-          <div class="col-md-9">
-            <div class="thumbnail shadow">
-              <div class="row">
-                <div class="col-md-12">
-                  <p class="float-left">Maurice D.</p>
-                  <p class="float-right">Il y a 10 min</p>
-                </div>
-                <div class="col-md-12">
-                  <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Fin Model 3 -->
-        <!-- Model 4 -->
-        <div class="thumbnail border shadow padding_top">
-          <div class="row">
-            <div class="col-md-2">
-              <img src="merlin.jpg" alt="Avatar du post" class="img-circle avatar_post" >
-            </div>
-            <div class="col-md-10">
-              <p class="float-left">Maurice D.</p>
-              <p class="float-right">Il y a 10 min</p>
-            </div>
-            <div class=" col-md-10">
-              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-md-2">
-              <img src="merlin.jpg" alt="Avatar du post" class="img-circle avatar_post" >
-            </div>
-            <div class="col-md-10">
-              <p class="float-left">Maurice D.</p>
-              <p class="float-right">Il y a 10 min</p>
-            </div>
-            <div class=" col-md-10">
-              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
-            </div>
-          </div>
-        </div>
-        <!-- Fin Model 4 -->
   </div>
 </div>
 

@@ -44,7 +44,7 @@ public class Init extends HttpServlet {
 			response.sendRedirect("Profil");
 		}*/
 		/* Redirection vers la jsp */
-		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/profil.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/index.jsp");
 		
 		// On envoi les paramètres à la requête avant de la forward à la jsp
 //		request.setAttribute("currentUrl", "index");
