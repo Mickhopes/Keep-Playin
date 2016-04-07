@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import javax.servlet.RequestDispatcher;
+
 /**
  * Servlet implementation class Init
  */
@@ -41,7 +43,17 @@ public class Init extends HttpServlet {
 		} else {
 			response.sendRedirect("Profil");
 		}*/
-		response.sendRedirect("index.html");
+		/* Redirection vers la jsp */
+		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/profil.jsp");
+		
+		// On envoi les paramètres à la requête avant de la forward à la jsp
+//		request.setAttribute("currentUrl", "index");
+//		request.setAttribute("mapDoc", map);
+//		if (erreur != null) {
+//			request.setAttribute("erreur", erreur);
+//		}
+		
+		dis.forward(request, response);
 	}
 
 	/**
