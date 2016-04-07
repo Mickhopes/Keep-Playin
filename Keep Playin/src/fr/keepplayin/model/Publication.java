@@ -5,12 +5,13 @@ import java.util.Date;
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Load;
 
 @Entity
 public class Publication {
     @Id Long id ;
     String message ;
-    Ref<Utilisateur> auteurRef ;
+    @Load Ref<Utilisateur> auteurRef ;
     Date dateDePublication ;
 
     public Long getId() {
@@ -37,8 +38,8 @@ public class Publication {
         this.message = message;
     }
 
-    public void setAuteurRef(Ref<Utilisateur> auteur) {
-        this.auteurRef = auteur;
+    public void setAuteurRef(Utilisateur auteur) {
+        this.auteurRef = Ref.create(auteur);
     }
 
     public void setDateDePublication(Date dateDePublication) {
