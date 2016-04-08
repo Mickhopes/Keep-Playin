@@ -78,6 +78,7 @@ body {
 .input-name{
   height: 35px;
   padding: 5px;
+  width: 192px;
 }
 
 footer{
@@ -185,9 +186,13 @@ legend{
   background-size: cover;
   background-repeat: no-repeat;
   color: white;
-  overflow: hidden;
-  /*text-shadow: black 0.4em 0.4em 0.4em;  */   
+  overflow: hidden;   
   text-shadow: #000000 2px 2px, #000000 -1px 2px, #000000 -1px -1px, #000000 2px -1px;
+}
+
+.msg-home{
+  text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 000f, 1px -1px 0 #000, -1px 1px 0 #000;
+  font-size: 24;
 }
 
 body {
@@ -265,6 +270,11 @@ body {
 
 .name-comment{
   font-size: 12px;
+  font-weight: bold;
+}
+
+.error{
+  color: red;
   font-weight: bold;
 }
 

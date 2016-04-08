@@ -23,7 +23,7 @@
 	
       <div class="jumbotron image-accueil">
         <span class="welcome">Bienvenue sur <br>Keep Playin' !</span>
-        <p class="lead">Si vous êtes nouveau par ici, lancez-vous et inscrivez-vous via le formulaire. Sinon connectez-vous grâce à la barre de navigation en haut.</p>
+        <span class="lead msg-home">Si vous êtes nouveau par ici, lancez-vous et inscrivez-vous via le formulaire. Sinon connectez-vous grâce à la barre de navigation en haut.</span>
 <!--         <p><a class="btn btn-lg btn-success" href="#" role="button">Je m'inscris !</a></p> -->
       </div>
     </div>
@@ -58,7 +58,7 @@
           <c:when test="${empty param.etat}">
             <!--  code généré grâce au site  -->
             <form class="form-horizontal"
-              id="form_inscription" action="inscription" method="post">
+              id="form_inscription" action="Init" method="post">
               <fieldset>
 
                 <!-- Form Name -->
@@ -67,6 +67,7 @@
                 <div class="control-group form-inscription">
                   <div class="controls">
                     
+
                       <input id="prenom" name="prenom" type="text" placeholder="Prénom"
                         class="input-xlarge input-name" required="true">
                       <input id="nom" name="nom" type="text" placeholder="Nom"
@@ -75,6 +76,15 @@
                   </div>
                 </div>
 
+                 <span class="error">
+					<c:if test="${!empty param.erreur}">
+						<c:choose>
+							<c:when test="${param.erreur == 'utilise'}">
+								Cette adresse e-mail est déjà utilisée !
+							</c:when>
+						</c:choose>
+					</c:if>
+				</span>
                 <!-- Text input-->
                 <div class="control-group form-inscription">
                   <!-- <label class="control-label" for="email">Adresse e-mail</label> -->
@@ -85,6 +95,7 @@
                     
                   </div>
                 </div>
+               
 
                 <!-- Text input-->
                 <div class="control-group form-inscription">
@@ -133,7 +144,7 @@
                       <option value="11"> Novembre
                       <option value="12"> Décembre
                     </select>
-                    <select>
+                    <select name="annee" size ="1">
                       <c:forEach var="i" begin="1905" end="2016">
                         <option><c:out value="${2016-i+1905}"/>
                       </c:forEach>
