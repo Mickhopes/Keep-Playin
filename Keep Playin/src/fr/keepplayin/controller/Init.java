@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -11,8 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import javax.servlet.RequestDispatcher;
+
+import fr.keepplayin.dao.InstrumentDao;
+import fr.keepplayin.dao.StyleMusicalDao;
+import fr.keepplayin.model.Instrument;
+import fr.keepplayin.model.StyleMusical;
+import fr.keepplayin.model.TypeInstrument;
+import fr.keepplayin.model.Style;
 
 /**
  * Servlet implementation class Init
@@ -29,7 +36,27 @@ public class Init extends HttpServlet {
     }
     
     public void init() throws ServletException {
-    	// Charger les object Objectify
+    	// Créer nos instrument si ils n'existent pas
+    	InstrumentDao daoI = new InstrumentDao();
+    	List<Instrument> listI = daoI.getAll();
+    	
+    	for(TypeInstrument t : TypeInstrument.values()) {
+    		Instrument i = new Instrument(t);
+    		if (!listI.contains(i)) {
+    			daoI.put(i);
+    		}
+    	}
+    	
+    	// Créer nos styles si ils n'existent pas
+    	StyleMusicalDao daoS = new StyleMusicalDao();
+    	List<StyleMusical> listS = daoS.getAll();
+    	
+    	for(Style s : Style.values()) {
+    		StyleMusical st = new StyleMusical(s);
+    		if (!listS.contains(st)) {
+    			daoS.put(st);
+    		}
+    	}
     }
 
 	/**
