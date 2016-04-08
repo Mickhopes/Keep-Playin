@@ -12,7 +12,6 @@ public class Commentaire {
     String message ;
     Ref<Utilisateur> auteurRef ;
     Date dateDeCommentaire ;
-    Ref<Publication> publicationCommenteeRef ;
 
     public Long getId() {
         return id;
@@ -30,10 +29,6 @@ public class Commentaire {
         return dateDeCommentaire;
     }
 
-    public Ref<Publication> getPublicationCommenteeRef() {
-        return publicationCommenteeRef;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -48,9 +43,5 @@ public class Commentaire {
 
     public void setDateDeCommentaire(Date dateDeCommentaire) {
         this.dateDeCommentaire = dateDeCommentaire;
-    }
-
-    public void setPublicationCommenteeRef(Ref<Publication> publicationCommentee) {
-        this.publicationCommenteeRef = publicationCommentee;
     }
 }

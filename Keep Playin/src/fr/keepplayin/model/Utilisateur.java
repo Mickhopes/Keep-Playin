@@ -29,6 +29,7 @@ public class Utilisateur {
     private List<Ref<Instrument>> instrumentsSecondairesRefs ;
     private List<Ref<StyleMusical>> stylesPreferesRefs ;
     private @Index List<Ref<Utilisateur>> amisRefs ;
+    private List<Notification> notifications;
     
     public Utilisateur() {
     	instrumentsSecondairesRefs = new ArrayList<Ref<Instrument>>();
@@ -72,6 +73,14 @@ public class Utilisateur {
     
     public void supprimerAmi(Ref<Utilisateur> u) {
     	amisRefs.remove(u);
+    }
+    
+    public void ajouterNotification(Notification n) {
+    	notifications.add(n);
+    }
+    
+    public void supprimerNotification(Notification n) {
+    	notifications.remove(n);
     }
     
     public Long getId() {
@@ -201,4 +210,12 @@ public class Utilisateur {
     public void setStylesPreferesRefs(List<Ref<StyleMusical>> stylesPreferes) {
         this.stylesPreferesRefs = stylesPreferes;
     }
+
+	public List<Notification> getNotifications() {
+		return notifications;
+	}
+
+	public void setNotifications(List<Notification> notifications) {
+		this.notifications = notifications;
+	}
 }
