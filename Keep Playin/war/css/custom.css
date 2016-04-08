@@ -222,7 +222,15 @@ body {
 }
 
 .margin_comment{
-  margin-top:-19px;
+  margin-top:-20px;
+}
+
+.post-options{
+
+}
+
+.connexion-form{
+  margin-top: 100px;
 }
 
 .vertical-resize {
@@ -278,6 +286,17 @@ body {
   font-weight: bold;
 }
 
+.green{
+  color: green;
+}
+
+.red{
+  color: red;
+}
+
+.cliquable:hover{
+  cursor: pointer;
+}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {

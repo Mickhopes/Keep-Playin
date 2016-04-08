@@ -1,5 +1,6 @@
 package fr.keepplayin.model ;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,7 +13,7 @@ import com.googlecode.objectify.annotation.Index;
 import com.googlecode.objectify.annotation.Load;
 
 @Entity
-public class Utilisateur {
+public class Utilisateur implements Serializable{
     private @Id Long id ;
     private @Index String nom ;
     private @Index String prenom ;

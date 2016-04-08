@@ -35,7 +35,7 @@
 
   <div class="publis-profil col-md-8">
     <!-- Debut zone d'affichage du flux -->
-        <div class="thumbnail border shadow padding_top">
+        <div class="thumbnail border shadow padding_top post-options">
           <div class="row">
             <div class="col-md-3">
               <img src="merlin.jpg" alt="Avatar du post" class="img-thumbnail height-105" >
@@ -49,6 +49,7 @@
             </div>
         	</div>
         </div>
+
         <div class="thumbnail border shadow col-md-10 col-md-offset-2 margin_comment">
             <div class="row">
             	<div class="col-md-2">
@@ -61,7 +62,7 @@
         		<div class="col-md-6 text-comment">
         			<span> Un marron.</span>
         		</div>
-    		</div>
+    		    </div>
     		<hr>
     		<div class="row">
             	<div class="col-md-2">

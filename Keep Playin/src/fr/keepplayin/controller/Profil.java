@@ -36,10 +36,10 @@ public class Profil extends HttpServlet {
 		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/profil.jsp");
 		HttpSession session = request.getSession();
 		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
-		if (user == null) {
+		if (user != null) {
 			dis.forward(request, response);
 		} else {
-			response.sendRedirect("Profil");
+			response.sendRedirect("/index");
 		}
 		
 		

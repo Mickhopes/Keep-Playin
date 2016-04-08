@@ -157,9 +157,9 @@
                 <label class="control-label" for="gender">Sexe</label>
                   <div class="controls">
                   
-                    <input type="radio" name="gender" value="male"> <span class="gender">Homme</span>
-                    <input type="radio" class="gender" name="gender" value="female"> <span class="gender">Femme</span>
-                    <input type="radio" class="gender" name="gender" value="other"> <span class="gender">Autre</span>
+                    <input type="radio" name="gender" value="Homme"> <span class="gender">Homme</span>
+                    <input type="radio" class="gender" name="gender" value="Femme"> <span class="gender">Femme</span>
+                    <input type="radio" class="gender" name="gender" value="Autre"> <span class="gender">Autre</span>
                     
                   </div>
                 </div>

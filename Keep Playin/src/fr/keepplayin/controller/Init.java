@@ -71,7 +71,7 @@ public class Init extends HttpServlet {
 		if (user == null) {
 			dis.forward(request, response);
 		} else {
-			response.sendRedirect("Profil");
+			response.sendRedirect("/profil");
 		}
 		
 		
@@ -114,7 +114,9 @@ public class Init extends HttpServlet {
 				if (userDao.chercherEmail(mail) == null){
 					Utilisateur user = new Utilisateur(nom,prenom,null,mail,password,birthdayDate,genre);
 					userDao.put(user);
-					response.sendRedirect("profil?etat=succes");
+					HttpSession session = request.getSession();
+					session.setAttribute("utilisateur", user);
+					response.sendRedirect("/profil");
 				}
 				else{
 					response.sendRedirect("Init?erreur=utilise");

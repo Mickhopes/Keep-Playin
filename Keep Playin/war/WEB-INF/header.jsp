@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="Keep Playin'">
-    <meta name="author" content="Pouvaret,Turnel, Vernet">
+    <meta name="author" content="Pouvaret, Turnel, Vernet">
     <title>Keep Playin'</title>
 
     <!-- Bootstrap core CSS -->
@@ -43,22 +43,27 @@
           <li role="presentation"><a href="#">About</a></li>
           <li role="presentation"><a href="#">Contact</a></li>
       	</ul>
-          	<form name="connect_form" class="navbar-form navbar-right" action="connexion_action.php" method="post">
-				<div class="form-group">
-					<input required="true" name="pseudo" type="text" placeholder="Identifiant" class="form-control">
-				</div>
-				<div class="form-group">
-					<input required="true" name="password" type="password" placeholder="Mot de passe" class="form-control">
-				</div>
-				<input type="hidden" name="currentUrl" value="<?php echo $url; ?>">
-				<a onClick="connect_form.submit()"><span class="glyphicon glyphicon-log-in green"></span></a>
-      		</form>
-      		<form name="deconnect_form" class="navbar-form navbar-right" action="deconnexion_action.php" method="post" style="margin-top:14px;">
-				<div class="form-group connectedText"></div>
-				<input type="hidden" name="currentUrl" value="<?php echo $url; ?>">
-				<a href="parametres.php"><span class="glyphicon glyphicon-cog grey"></span></a>
-				<a onClick="deconnect_form.submit()"><span class="glyphicon glyphicon-log-out red"></span></a>
-			</form>
+
+          <c:if test="${(!empty sessionScope.utilisateur)}">
+            <form name="deconnect_form" class="navbar-form navbar-right" action="deconnexion" method="post" style="margin-top:14px;">
+            <div class="form-group connectedText"></div>
+            <a href="parametres.php"><span class="glyphicon glyphicon-cog grey"></span></a>
+            <a onClick="deconnect_form.submit()"><span class="glyphicon glyphicon-log-out red cliquable"></span></a>
+          </form>
+          </c:if>
+          <c:if test="${(empty sessionScope.utilisateur)}">
+            <form name="connect_form" class="navbar-form navbar-right" action="connexion" method="post">
+            <div class="form-group">
+              <input required="true" name="mail" type="text" placeholder="Adresse e-mail" class="form-control">
+            </div>
+            <div class="form-group">
+              <input required="true" name="password" type="password" placeholder="Mot de passe" class="form-control">
+            </div>
+            <a onClick="connect_form.submit()"><span class="glyphicon glyphicon-log-in green cliquable"></span></a>
+              </form>
+          </c:if>
+          	
+      		
     </div>
  	 </div>
 	</div>
