@@ -9,10 +9,10 @@
 </c:if>
 
 <div class="container profil-container">
-  <div class="infos-profil col-md-4 border shadow">
+  <div class="infos-profil col-md-4">
 
   <!-- AVATAR -->
-    <div class="photo-profil col-md-12">
+    <div class="photo-profil col-md-12 shadow border">
       <div class="photo-container col-md-6">
         <img src="merlin.jpg" class="photo">
       </div>
@@ -28,12 +28,59 @@
     </div>
     <!-- INFOS -->
     <div class="infos-container col-md-12">
-    <span> blabla </span>
-    <span> blabla </span>
+    	<div class="row shadow border infos-details">
+		<label>Instruments</label><a href="#"><span class="badge badge-custom">5</span></a>
+		 <div class="list-group">
+		  <a href="#" class="list-group-item">First item</a>
+		  <a href="#" class="list-group-item">Second item</a>
+		  <a href="#" class="list-group-item">Third item</a>
+	     </div>
+    	</div>
+    	<div class="row shadow border infos-details">
+    	<label>Genres de musique</label><a href="#"><span class="badge badge-custom">7</span></a>
+    	<div class="list-group">
+		  <a href="#" class="list-group-item">First item</a>
+		  <a href="#" class="list-group-item">Second item</a>
+		  <a href="#" class="list-group-item">Third item</a>
+	     </div>
+    	</div>
+    	<div class="row shadow border infos-details">
+    	<label>Amis</label><a href="#"><span class="badge badge-custom">42</span></a>
+    	<div class="list-group">
+		  <a href="#" class="list-group-item">First item</a>
+		  <a href="#" class="list-group-item">Second item</a>
+		  <a href="#" class="list-group-item">Third item</a>
+	     </div>
+    	</div>
+    	<div class="row shadow border infos-details">
+    	<label>Autre</label><a href="#"><span class="badge badge-custom">0</span></a>
+    	<div class="list-group">
+		  <a href="#" class="list-group-item">First item</a>
+		  <a href="#" class="list-group-item">Second item</a>
+		  <a href="#" class="list-group-item">Third item</a>
+	     </div>
+    	</div>
     </div>
   </div>
 
   <div class="publis-profil col-md-8">
+  <div class="thumbnail border shadow padding_top post-options">
+  	<div class="row">
+            <div class="col-md-2">
+              <img src="merlin.jpg" alt="Avatar du post" class="img-thumbnail height-publi" >
+            </div>
+            <div class="col-md-10 name-publi">
+            <form name="publication_form connectedText" method="post" action="publi">
+            	 <div class="form-group">
+  				<textarea required="true" class="form-control publi" name="message" rows="3" placeholder="Rock'n Roll Baby !"></textarea>
+				</div>
+				<!-- <input type="hidden" value="id_profil" name="id_profil"> -->
+            	<button type="button" action="publication_form.submit()" class="btn btn-primary col-md-offset-10">Publier</button>
+            </form>
+            </div>
+        </div>
+  </div>
+
     <!-- Debut zone d'affichage du flux -->
         <div class="thumbnail border shadow padding_top post-options">
           <div class="row">

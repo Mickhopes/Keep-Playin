@@ -35,19 +35,22 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.php">Keep Playin'</a>
+      <a class="navbar-brand" href="/index">Keep Playin'</a>
     </div>
+    <form name="search_form connectedText" class="navbar-form navbar-left" action="recherche" method="post">
+            <div class="form-group">
+              <input name="recherche" type="text" placeholder="Rechercher..." class="form-control">
+              </div>
+    </form>
     <div class="collapse navbar-collapse">
       	<ul class="nav navbar-nav" id="nav_menu">
-        	<li role="presentation" class="active"><a href="#">Home</a></li>
-          <li role="presentation"><a href="#">About</a></li>
-          <li role="presentation"><a href="#">Contact</a></li>
+          <!-- <li role="presentation"><a href="#">About</a></li> -->
       	</ul>
 
           <c:if test="${(!empty sessionScope.utilisateur)}">
             <form name="deconnect_form" class="navbar-form navbar-right" action="deconnexion" method="post" style="margin-top:14px;">
             <div class="form-group connectedText"></div>
-            <a href="parametres.php"><span class="glyphicon glyphicon-cog grey"></span></a>
+            <a href="parametres_form.submit()"><span class="glyphicon glyphicon-cog grey"></span></a>
             <a onClick="deconnect_form.submit()"><span class="glyphicon glyphicon-log-out red cliquable"></span></a>
           </form>
           </c:if>
@@ -59,6 +62,7 @@
             <div class="form-group">
               <input required="true" name="password" type="password" placeholder="Mot de passe" class="form-control">
             </div>
+            <button type="submit" hidden>Hidden</button>
             <a onClick="connect_form.submit()"><span class="glyphicon glyphicon-log-in green cliquable"></span></a>
               </form>
           </c:if>

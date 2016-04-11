@@ -104,15 +104,15 @@ legend{
 }
 
 .profil-container{
-  padding-top: 100px;
-  border: 1px solid;
+  padding-top: 50px;
+  /*border: 1px solid;*/
   border-radius: 25px;
   padding-bottom: 10px;
   border-color: lightgrey;
 }
 
 .infos-profil{
-  border:2px solid;
+  /*border:2px solid;*/
   padding: 0px;
   border-color :grey;
 }
@@ -149,7 +149,7 @@ legend{
 }
 
 .photo-container{
-  padding: 0px;
+  padding: 5px;
 }
 
 .birthday-profil{
@@ -188,6 +188,11 @@ legend{
   color: white;
   overflow: hidden;   
   text-shadow: #000000 2px 2px, #000000 -1px 2px, #000000 -1px -1px, #000000 2px -1px;
+}
+
+.badge-custom{
+  /*padding:3px;*/
+  margin-left:10px;
 }
 
 .msg-home{
@@ -241,6 +246,10 @@ body {
   height: 105px;
 }
 
+.height-publi{
+  height: 70px;
+}
+
 .height-comment{
   height: 50px;
 }
@@ -261,6 +270,10 @@ body {
   width:80px;
   height:80px;
   
+}
+
+.publi{
+  resize:none;
 }
 
 .text-publi{
@@ -292,6 +305,10 @@ body {
 
 .red{
   color: red;
+}
+
+.infos-details{
+  margin-top: 20px;
 }
 
 .cliquable:hover{
