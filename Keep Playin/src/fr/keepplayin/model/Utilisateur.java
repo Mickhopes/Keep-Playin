@@ -142,7 +142,7 @@ public class Utilisateur implements Serializable, Comparable<Utilisateur>{
     }
 
     public Instrument getInstrumentPrincipal() {
-        return instrumentPrincipalRef.get();
+        return instrumentPrincipalRef != null ? instrumentPrincipalRef.get() : null;
     }
 
     public Date getDebutApprentissage() {

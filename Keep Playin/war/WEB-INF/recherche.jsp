@@ -11,7 +11,7 @@
 
 <div class="row">
 <div class="resultats-recherche col-md-6 col-md-offset-3">
-	<form name="recherche-form" action="recherche" method="get">
+	<form name="recherche-form" action="/recherche" method="get">
 	<div class="row">
 			<div class="col-md-3">
 				Personne à rechercher :
