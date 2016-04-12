@@ -153,20 +153,44 @@ public class Utilisateur implements Serializable, Comparable<Utilisateur>{
         return niveauInstrumentPrincipal;
     }
 
-    public List<Ref<Instrument>> getInstrumentsSecondairesRefs() {
-        return instrumentsSecondairesRefs;
+    public List<Instrument> getInstrumentsSecondaires() {
+    	List<Instrument> iList = new ArrayList<Instrument>();
+    	
+    	for(Ref<Instrument> i : instrumentsSecondairesRefs) {
+    		iList.add(i.get());
+    	}
+    	
+        return iList;
     }
 
-    public List<Ref<StyleMusical>> getStylesPreferesRefs() {
-        return stylesPreferesRefs;
+    public List<StyleMusical> getStylesPreferes() {
+    	List<StyleMusical> sList = new ArrayList<StyleMusical>();
+    	
+    	for(Ref<StyleMusical> s : stylesPreferesRefs) {
+    		sList.add(s.get());
+    	}
+    	
+        return sList;
     }
 
-    public List<Ref<Utilisateur>> getAmisRefs() {
-        return amisRefs;
+    public List<Utilisateur> getAmis() {
+    	List<Utilisateur> uList = new ArrayList<Utilisateur>();
+    	
+    	for(Ref<Utilisateur> u : amisRefs) {
+    		uList.add(u.get());
+    	}
+    	
+        return uList;
     }
 
-    public void setAmisRefs(List<Ref<Utilisateur>> amis) {
-        this.amisRefs = amis;
+    public void setAmisRefs(List<Utilisateur> amis) {
+    	List<Ref<Utilisateur>> uList = new ArrayList<Ref<Utilisateur>>();
+    	
+    	for(Utilisateur u : amis) {
+    		uList.add(Ref.create(u));
+    	}
+    	
+        this.amisRefs = uList;
     }
 
     public void setId(Long id) {
@@ -221,12 +245,23 @@ public class Utilisateur implements Serializable, Comparable<Utilisateur>{
         this.niveauInstrumentPrincipal = niveauInstrumentPrincipal;
     }
 
-    public void setInstrumentsSecondairesRefs(List<Ref<Instrument>> instrumentsSecondaires) {
-        this.instrumentsSecondairesRefs = instrumentsSecondaires;
+    public void setInstrumentsSecondaires(List<Instrument> instrumentsSecondaires) {
+    	List<Ref<Instrument>> iList = new ArrayList<Ref<Instrument>>();
+    	
+    	for(Instrument i : instrumentsSecondaires) {
+    		iList.add(Ref.create(i));
+    	}
+    	
+        this.instrumentsSecondairesRefs = iList;
     }
 
-    public void setStylesPreferesRefs(List<Ref<StyleMusical>> stylesPreferes) {
-        this.stylesPreferesRefs = stylesPreferes;
+    public void setStylesPreferes(List<StyleMusical> stylesPreferes) {
+    	List<Ref<StyleMusical>> sList = new ArrayList<Ref<StyleMusical>>();
+    	
+    	for(StyleMusical s : stylesPreferes) {
+    		sList.add(Ref.create(s));
+    	}
+        this.stylesPreferesRefs = sList;
     }
 
 	public List<Notification> getNotifications() {
