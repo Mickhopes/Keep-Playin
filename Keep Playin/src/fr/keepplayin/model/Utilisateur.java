@@ -13,7 +13,7 @@ import com.googlecode.objectify.annotation.Index;
 import com.googlecode.objectify.annotation.Load;
 
 @Entity
-public class Utilisateur implements Serializable{
+public class Utilisateur implements Serializable, Comparable<Utilisateur>{
     private @Id Long id ;
     private @Index String nom ;
     private @Index String prenom ;
@@ -255,5 +255,10 @@ public class Utilisateur implements Serializable{
 		}
 		
 		this.publicationsRef = pList;
+	}
+
+	@Override
+	public int compareTo(Utilisateur u) {
+		return (this.prenom+" "+this.nom).compareTo(u.getPrenom()+" "+u.getNom());
 	}
 }

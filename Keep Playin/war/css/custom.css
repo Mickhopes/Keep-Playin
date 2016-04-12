@@ -122,6 +122,10 @@ legend{
 
 }
 
+.resultats-recherche{
+  margin-top: 50px;
+}
+
 .photo{
   width:150px;
   height:150px;
@@ -170,7 +174,7 @@ legend{
   height:207px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-} 
+}
 
 .image_profile{
   position: absolute;
@@ -186,7 +190,7 @@ legend{
   background-size: cover;
   background-repeat: no-repeat;
   color: white;
-  overflow: hidden;   
+  overflow: hidden;
   text-shadow: #000000 2px 2px, #000000 -1px 2px, #000000 -1px -1px, #000000 2px -1px;
 }
 
@@ -222,7 +226,7 @@ body {
 
 .size32 {
   width:32px;
-  height:32px;  
+  height:32px;
 }
 
 .image_post {
@@ -277,7 +281,7 @@ body {
 .avatar_post {
   width:80px;
   height:80px;
-  
+
 }
 
 .publi{

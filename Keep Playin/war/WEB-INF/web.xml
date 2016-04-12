@@ -25,6 +25,11 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet>
 	
 	<servlet>
+		<servlet-name>Recherche</servlet-name>
+		<servlet-class>fr.keepplayin.controller.Recherche</servlet-class>
+	</servlet>
+	
+	<servlet>
 		<servlet-name>Comm</servlet-name>
 		<servlet-class>fr.keepplayin.controller.Comm</servlet-class>
 	</servlet>
@@ -57,6 +62,11 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>Publi</servlet-name>
 		<url-pattern>/publi</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>Recherche</servlet-name>
+		<url-pattern>/recherche</url-pattern>
 	</servlet-mapping>
 	
 	<servlet-mapping>

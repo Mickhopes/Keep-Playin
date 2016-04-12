@@ -20,7 +20,7 @@
         </nav>
         <h3 class="text-muted">Project name</h3>
       </div> -->
-	
+
       <div class="jumbotron image-accueil">
         <span class="welcome">Bienvenue sur <br>Keep Playin' !</span>
         <span class="lead msg-home">Si vous êtes nouveau par ici, lancez-vous et inscrivez-vous via le formulaire. Sinon connectez-vous grâce à la barre de navigation en haut.</span>
@@ -66,13 +66,13 @@
 
                 <div class="control-group form-inscription">
                   <div class="controls">
-                    
+
 
                       <input id="prenom" name="prenom" type="text" placeholder="Prénom"
                         class="input-xlarge input-name" required="true">
                       <input id="nom" name="nom" type="text" placeholder="Nom"
                       class="input-xlarge input-name" required="true">
-                    
+
                   </div>
                 </div>
 
@@ -89,22 +89,22 @@
                 <div class="control-group form-inscription">
                   <!-- <label class="control-label" for="email">Adresse e-mail</label> -->
                   <div class="controls">
-                    
+
                       <input id="email" name="email" type="text" placeholder="Adresse e-mail"
                         class="input-xlarge input-mail" required="true">
-                    
+
                   </div>
                 </div>
-               
+
 
                 <!-- Text input-->
                 <div class="control-group form-inscription">
                 <!--   <label class="control-label" for="password">Mot de passe</label> -->
                   <div class="controls">
-                    
+
                       <input id="password" name="password" type="password"
                         placeholder="Mot de passe" class="input-xlarge input-password" required="true">
-                    
+
                   </div>
                 </div>
 
@@ -113,18 +113,18 @@
                   <!-- <label class="control-label" for="password_conf">Confirmer
                     le mot de passe</label> -->
                   <div class="controls">
-                    
+
                       <input id="password_conf" name="password_conf" type="password"
                         placeholder="Confirmer le mot de passe" class="input-xlarge input-password" required="true"
                         onkeyup="checkPassword()">
-                    
+
                   </div>
                 </div>
 
                 <div class="control-group form-inscription">
                   <label class="control-label" for="birthday">Date de naissance</label>
                   <div class="controls">
-                  
+
                     <select name="jour" size="1">
                       <c:forEach var="i" begin="1" end="31">
                         <option><c:out value="${i}"/>
@@ -149,18 +149,18 @@
                         <option><c:out value="${2016-i+1905}"/>
                       </c:forEach>
                     </select>
-                  
+
                   </div>
                 </div>
 
                 <div class="control-group form-inscription">
                 <label class="control-label" for="gender">Sexe</label>
                   <div class="controls">
-                  
-                    <input type="radio" name="gender" value="Homme"> <span class="gender">Homme</span>
+
+                    <input type="radio" required="true" name="gender" value="Homme"> <span class="gender">Homme</span>
                     <input type="radio" class="gender" name="gender" value="Femme"> <span class="gender">Femme</span>
                     <input type="radio" class="gender" name="gender" value="Autre"> <span class="gender">Autre</span>
-                    
+
                   </div>
                 </div>
 
