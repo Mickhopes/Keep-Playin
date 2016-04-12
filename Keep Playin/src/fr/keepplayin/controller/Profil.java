@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
 
+import fr.keepplayin.dao.DemandeAmiDao;
 import fr.keepplayin.dao.UtilisateurDao;
 import fr.keepplayin.model.Utilisateur;
 
@@ -44,9 +45,11 @@ public class Profil extends HttpServlet {
 		String id = request.getParameter("id");
 		Utilisateur user;
 		UtilisateurDao dao = new UtilisateurDao();
+		DemandeAmiDao daoD = new DemandeAmiDao();
 
 		// On refresh l'utilisateur en session
 		session.setAttribute("utilisateur", dao.get(u.getId()));
+		session.setAttribute("nombreDemande", daoD.nombreDemandeAttente(u));
 
 		if (id != null) {
 			user = dao.get(Long.parseLong(id));
@@ -60,6 +63,7 @@ public class Profil extends HttpServlet {
 				session.setAttribute("utilisateurVisite", user);
 				session.setAttribute("visite", Boolean.TRUE);
 				session.setAttribute("ami", u.estAmi(user));
+				session.setAttribute("enAttente", daoD.estEnAttente(u, user));
 			}
 		} else {
 			session.setAttribute("visite", Boolean.FALSE);

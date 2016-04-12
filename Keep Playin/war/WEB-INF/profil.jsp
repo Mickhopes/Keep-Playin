@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="fr.keepplayin.model.Utilisateur,java.util.List,java.text.SimpleDateFormat,java.util.Date,java.lang.Boolean,fr.keepplayin.model.Publication,fr.keepplayin.model.Commentaire,java.util.Collections" %>
 <jsp:include page="header.jsp">
-	<jsp:param value="${currentUrl}" name="currentUrl" />
+	<jsp:param value="${sessionScope.nombreDemande}" name="nombreDemande" />
 </jsp:include>
 <c:if test="${!empty erreur}">
 	<span class="error col-md-5 col-md-offset-4"> ${erreur} </span>
@@ -77,29 +77,50 @@
   </div>
 
   <div class="publis-profil col-md-8">
-  <div class="thumbnail border shadow padding_top post-options">
   <%
   	Boolean estAmi = (Boolean) session.getAttribute("ami");
-  	if (estAmi != null && estAmi) {
+  	if (estAmi != null && estAmi || !enVisite) {
   %>
+  	<div class="thumbnail border shadow padding_top post-options">
   	<div class="row">
-            <div class="col-md-2">
-              <img src="photo-profil.jpg" alt="Avatar du post" class="img-thumbnail height-publi" >
-            </div>
-            <div class="col-md-10 name-publi">
-            <form name="publication_form connectedText" method="post" action="/publi">
-            	 <div class="form-group">
-  				<textarea required="true" class="form-control publi" name="message" rows="3" placeholder="Rock'n Roll Baby !"></textarea>
-				</div>
-				<input type="hidden" value="<%= u.getId() %>" name="id"> 
-            	<button type="submit" class="btn btn-primary col-md-offset-10">Publier</button>
-            </form>
-            </div>
-        </div>
+         <div class="col-md-2">
+           <img src="photo-profil.jpg" alt="Avatar du post" class="img-thumbnail height-publi" >
+         </div>
+         <div class="col-md-10 name-publi">
+         <form name="publication_form connectedText" method="post" action="/publi">
+         	 <div class="form-group">
+				<textarea required="true" class="form-control publi" name="message" rows="3" placeholder="Rock'n Roll Baby !"></textarea>
+			</div>
+			<input type="hidden" value="<%= u.getId() %>" name="id"> 
+         	<button type="submit" class="btn btn-primary col-md-offset-10">Publier</button>
+         </form>
+         </div>
+      </div>
+    </div>
   <%
+  	} else {
+  		Boolean estEnAttente = (Boolean) session.getAttribute("enAttente");
+  		if (estEnAttente != null) {
+  			if (!estEnAttente) {
+  %>
+  	<div class="thumbnail border shadow padding_top post-options">
+  		<div class="row">
+         <div class="col-md-12 name-publi">
+         <form name="publication_form connectedText" method="post" action="/demandeAmi">
+         	 <div class="form-group">
+				<textarea required="true" class="form-control publi" name="message" rows="3">Bonjour, je souhaiterais vous ajouter dans ma liste d'amis !</textarea>
+			</div>
+			<input type="hidden" value="<%= u.getId() %>" name="id"> 
+         	<button type="submit" class="btn btn-success col-md-offset-5 col-md-2">Ajouter en ami</button>
+         </form>
+         </div>
+      </div>
+   </div>
+  <%
+  			}
+  		}
   	}
   %>
-  </div>
 
     <!-- Debut zone d'affichage du flux -->
     	<% 

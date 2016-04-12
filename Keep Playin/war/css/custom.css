@@ -24,6 +24,15 @@ body {
   line-height: 40px;
 }
 
+.label-as-badge {
+    border-radius: 1em;
+    margin-bottom: 5px;
+}
+
+.icon-menu {
+	
+}
+
 /* Custom page footer */
 .footer {
   padding-top: 19px;
