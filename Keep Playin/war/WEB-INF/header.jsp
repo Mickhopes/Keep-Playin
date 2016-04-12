@@ -37,7 +37,7 @@
       </button>
       <a class="navbar-brand" href="/index">Keep Playin'</a>
     </div>
-    <form name="search_form connectedText" class="navbar-form navbar-left" action="recherche" method="post">
+    <form name="search_form connectedText" class="navbar-form navbar-left" action="recherche" method="get">
             <div class="form-group">
               <input name="recherche" type="text" placeholder="Rechercher..." class="form-control">
               </div>
@@ -66,8 +66,8 @@
             <a onClick="connect_form.submit()"><span class="glyphicon glyphicon-log-in green cliquable"></span></a>
               </form>
           </c:if>
-          	
-      		
+
+
     </div>
  	 </div>
 	</div>
