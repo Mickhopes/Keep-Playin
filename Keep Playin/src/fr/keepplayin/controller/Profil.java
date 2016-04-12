@@ -57,9 +57,9 @@ public class Profil extends HttpServlet {
 				
 				return;
 			} else {
-				request.setAttribute("utilisateurVisite", user);
-				request.setAttribute("visite", Boolean.TRUE);
-				request.setAttribute("ami", u.estAmi(user));
+				session.setAttribute("utilisateurVisite", user);
+				session.setAttribute("visite", Boolean.TRUE);
+				session.setAttribute("ami", u.estAmi(user));
 			}
 		} else {
 			session.setAttribute("visite", Boolean.FALSE);
