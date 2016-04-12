@@ -132,7 +132,7 @@
         Confirmer le nouveau mot de passe :
       </div>
       <div class="col-md-5"><input id="password_conf" name="password_conf" type="password"
-          placeholder="Confirmer le mot de passe" class="input-xlarge input-password" required="true"
+          placeholder="Confirmer le mot de passe" class="input-xlarge input-password"
           onkeyup="checkPassword()">
         </div>
       </div>
