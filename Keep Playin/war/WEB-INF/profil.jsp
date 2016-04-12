@@ -1,12 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="fr.keepplayin.model.Utilisateur,java.util.List,java.text.SimpleDateFormat,java.util.Date,java.lang.Boolean" %>
 <jsp:include page="header.jsp">
 	<jsp:param value="${currentUrl}" name="currentUrl" />
 </jsp:include>
 <c:if test="${!empty erreur}">
 	<span class="error col-md-5 col-md-offset-4"> ${erreur} </span>
 </c:if>
+
+<%
+	Utilisateur u;
+	Boolean enVisite = (Boolean) session.getAttribute("visite");
+	if (enVisite) {
+		u = (Utilisateur) session.getAttribute("utilisateurVisite");
+	} else {
+		u = (Utilisateur) session.getAttribute("utilisateur");
+	}
+%>
 
 <div class="container profil-container">
   <div class="infos-profil col-md-4">
@@ -17,13 +28,13 @@
         <img src="merlin.jpg" class="photo">
       </div>
       <div class="names-profil col-md-6">
-        <span class="names">Merlin</span><span class="names"> L'ENCHANTEUR</span>
+        <span class="names"><%= u.getPrenom() %></span><span class="names"> <%= u.getNom() %></span>
       </div>
       <div class="pseudo-profil col-md-6">
-        <span class="pseudo">Coco l'Asticot</span>
+        <span class="pseudo"><% if(u.getNomDeScene() == null) { out.print("Aucun nom de scène"); } else { out.print(u.getNomDeScene()); } %></span>
       </div>
       <div class="birthday-profil col-md-6">
-        <span class="birthday-info"> 01/01/1133 (883 ans)</span>
+        <span class="birthday-info"> <%= new SimpleDateFormat("dd/MM/yyyy").format(u.getDateDeNaissance()) %></span>
       </div>
     </div>
     <!-- INFOS -->

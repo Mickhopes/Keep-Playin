@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
 
+import fr.keepplayin.dao.UtilisateurDao;
 import fr.keepplayin.model.Utilisateur;
 
 /**
@@ -33,10 +34,30 @@ public class Profil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/* Redirection vers la jsp */
-		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/profil.jsp");
+		String id = request.getParameter("id");
+		Utilisateur user;
 		HttpSession session = request.getSession();
-		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
-		if (user != null) {
+		
+		if (id != null) {
+			UtilisateurDao dao = new UtilisateurDao();
+			user = dao.get(Long.parseLong(id));
+			
+			if (user == null) {
+				RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/404.jsp");
+				dis.forward(request, response);
+				
+				return;
+			} else {
+				session.setAttribute("utilisateurVisite", user);
+				session.setAttribute("visite", Boolean.TRUE);
+			}
+		} else {
+			session.setAttribute("visite", Boolean.FALSE);
+		}
+		
+		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/profil.jsp");
+		
+		if (session.getAttribute("utilisateur") != null) {
 			dis.forward(request, response);
 		} else {
 			response.sendRedirect("/index");

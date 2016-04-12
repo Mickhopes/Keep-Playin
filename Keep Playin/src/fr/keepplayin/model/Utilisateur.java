@@ -30,12 +30,15 @@ public class Utilisateur implements Serializable{
     private List<Ref<Instrument>> instrumentsSecondairesRefs ;
     private List<Ref<StyleMusical>> stylesPreferesRefs ;
     private @Index List<Ref<Utilisateur>> amisRefs ;
+    private List<Publication> publications;
     private List<Notification> notifications;
     
     public Utilisateur() {
     	instrumentsSecondairesRefs = new ArrayList<Ref<Instrument>>();
     	stylesPreferesRefs = new ArrayList<Ref<StyleMusical>>();
     	amisRefs = new ArrayList<Ref<Utilisateur>>();
+    	publications = new ArrayList<Publication>();
+    	notifications = new ArrayList<Notification>();
     }
 
     public Utilisateur(String nom, String prenom, String nomDeScene, String email, String mdp, Date dateDeNaissance, String sexe) {
@@ -50,6 +53,8 @@ public class Utilisateur implements Serializable{
     	instrumentsSecondairesRefs = new ArrayList<Ref<Instrument>>();
     	stylesPreferesRefs = new ArrayList<Ref<StyleMusical>>();
     	amisRefs = new ArrayList<Ref<Utilisateur>>();
+    	publications = new ArrayList<Publication>();
+    	notifications = new ArrayList<Notification>();
     }
     
     public void ajouterInstrumentSecondaire(Instrument instrumentSecondaire) {
@@ -82,6 +87,14 @@ public class Utilisateur implements Serializable{
     
     public void supprimerNotification(Notification n) {
     	notifications.remove(n);
+    }
+    
+    public void ajouterPublication(Publication n) {
+    	publications.add(n);
+    }
+    
+    public void supprimerPublication(Publication n) {
+    	publications.remove(n);
     }
     
     public Long getId() {
@@ -218,5 +231,13 @@ public class Utilisateur implements Serializable{
 
 	public void setNotifications(List<Notification> notifications) {
 		this.notifications = notifications;
+	}
+
+	public List<Publication> getPublications() {
+		return publications;
+	}
+
+	public void setPublications(List<Publication> publications) {
+		this.publications = publications;
 	}
 }

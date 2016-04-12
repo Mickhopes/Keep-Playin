@@ -58,7 +58,7 @@
           <c:when test="${empty param.etat}">
             <!--  code généré grâce au site  -->
             <form class="form-horizontal"
-              id="form_inscription" action="Init" method="post">
+              id="form_inscription" action="/index" method="post">
               <fieldset>
 
                 <!-- Form Name -->

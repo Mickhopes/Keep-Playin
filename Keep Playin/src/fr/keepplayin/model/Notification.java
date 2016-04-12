@@ -1,5 +1,6 @@
 package fr.keepplayin.model ;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.googlecode.objectify.Ref;
@@ -7,7 +8,7 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
 @Entity
-public class Notification {
+public class Notification implements Serializable{
     @Id Long id ;
     Date dateNotification ;
     String message ;
