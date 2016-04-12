@@ -81,6 +81,10 @@ public class Utilisateur implements Serializable{
     	amisRefs.remove(u);
     }
     
+    public boolean estAmi(Utilisateur u) {
+		return amisRefs.contains(Ref.create(u));
+	}
+    
     public void ajouterNotification(Notification n) {
     	notifications.add(n);
     }

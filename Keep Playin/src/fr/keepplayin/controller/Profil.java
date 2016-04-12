@@ -33,12 +33,21 @@ public class Profil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/* Redirection vers la jsp */
+		HttpSession session = request.getSession();
+		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur");
+		if (u == null) {
+			response.sendRedirect("/index");
+			
+			return;
+		}
+
 		String id = request.getParameter("id");
 		Utilisateur user;
-		HttpSession session = request.getSession();
 		UtilisateurDao dao = new UtilisateurDao();
-		
+
+		// On refresh l'utilisateur en session
+		session.setAttribute("utilisateur", dao.get(u.getId()));
+
 		if (id != null) {
 			user = dao.get(Long.parseLong(id));
 			
@@ -48,36 +57,16 @@ public class Profil extends HttpServlet {
 				
 				return;
 			} else {
-				session.setAttribute("utilisateurVisite", user);
-				session.setAttribute("visite", Boolean.TRUE);
+				request.setAttribute("utilisateurVisite", user);
+				request.setAttribute("visite", Boolean.TRUE);
+				request.setAttribute("ami", u.estAmi(user));
 			}
 		} else {
 			session.setAttribute("visite", Boolean.FALSE);
 		}
-		
-		// On refresh l'utilisateur en session
-		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur");
-		if (u != null) {
-			session.setAttribute("utilisateur", dao.get(u.getId()));
-		}
-		
+
 		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/profil.jsp");
-		
-		if (session.getAttribute("utilisateur") != null) {
-			dis.forward(request, response);
-		} else {
-			response.sendRedirect("/index");
-		}
-		
-		
-		// On envoi les paramètres à la requête avant de la forward à la jsp
-//		request.setAttribute("currentUrl", "index");
-//		request.setAttribute("mapDoc", map);
-//		if (erreur != null) {
-//			request.setAttribute("erreur", erreur);
-//		}
-		
-		//dis.forward(request, response);
+		dis.forward(request, response);
 	}
 
 	/**
