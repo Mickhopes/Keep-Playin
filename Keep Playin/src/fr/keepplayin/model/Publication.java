@@ -11,7 +11,7 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Load;
 
 @Entity
-public class Publication implements Serializable{
+public class Publication implements Serializable, Comparable<Publication>{
     private @Id Long id ;
     private String message ;
     private @Load Ref<Utilisateur> auteurRef ;
@@ -25,6 +25,8 @@ public class Publication implements Serializable{
     public Publication(String message, Utilisateur auteur) {
     	this.message = message;
     	auteurRef = Ref.create(auteur);
+    	
+    	dateDePublication = new Date();
     	
     	commentaires = new ArrayList<Commentaire>();
     }
@@ -45,8 +47,8 @@ public class Publication implements Serializable{
         return message;
     }
 
-    public Ref<Utilisateur> getAuteurRef() {
-        return auteurRef;
+    public Utilisateur getAuteur() {
+        return auteurRef.get();
     }
 
     public Date getDateDePublication() {
@@ -61,7 +63,7 @@ public class Publication implements Serializable{
         this.message = message;
     }
 
-    public void setAuteurRef(Utilisateur auteur) {
+    public void setAuteur(Utilisateur auteur) {
         this.auteurRef = Ref.create(auteur);
     }
 
@@ -75,5 +77,10 @@ public class Publication implements Serializable{
 
 	public void setCommentaires(List<Commentaire> commentaires) {
 		this.commentaires = commentaires;
+	}
+
+	@Override
+	public int compareTo(Publication p) {
+		return p.getDateDePublication().compareTo(dateDePublication);
 	}
 }

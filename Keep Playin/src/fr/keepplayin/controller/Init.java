@@ -17,6 +17,7 @@ import fr.keepplayin.dao.InstrumentDao;
 import fr.keepplayin.dao.StyleMusicalDao;
 import fr.keepplayin.dao.UtilisateurDao;
 import fr.keepplayin.model.Instrument;
+import fr.keepplayin.model.Publication;
 import fr.keepplayin.model.Style;
 import fr.keepplayin.model.StyleMusical;
 import fr.keepplayin.model.TypeInstrument;

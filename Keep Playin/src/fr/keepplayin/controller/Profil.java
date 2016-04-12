@@ -37,9 +37,9 @@ public class Profil extends HttpServlet {
 		String id = request.getParameter("id");
 		Utilisateur user;
 		HttpSession session = request.getSession();
+		UtilisateurDao dao = new UtilisateurDao();
 		
 		if (id != null) {
-			UtilisateurDao dao = new UtilisateurDao();
 			user = dao.get(Long.parseLong(id));
 			
 			if (user == null) {
@@ -53,6 +53,12 @@ public class Profil extends HttpServlet {
 			}
 		} else {
 			session.setAttribute("visite", Boolean.FALSE);
+		}
+		
+		// On refresh l'utilisateur en session
+		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur");
+		if (u != null) {
+			session.setAttribute("utilisateur", dao.get(u.getId()));
 		}
 		
 		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/profil.jsp");

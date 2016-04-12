@@ -1,7 +1,8 @@
+<%@page import="java.util.Collection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="fr.keepplayin.model.Utilisateur,java.util.List,java.text.SimpleDateFormat,java.util.Date,java.lang.Boolean" %>
+<%@ page import="fr.keepplayin.model.Utilisateur,java.util.List,java.text.SimpleDateFormat,java.util.Date,java.lang.Boolean,fr.keepplayin.model.Publication,fr.keepplayin.model.Commentaire,java.util.Collections" %>
 <jsp:include page="header.jsp">
 	<jsp:param value="${currentUrl}" name="currentUrl" />
 </jsp:include>
@@ -25,7 +26,7 @@
   <!-- AVATAR -->
     <div class="photo-profil col-md-12 shadow border">
       <div class="photo-container col-md-6">
-        <img src="merlin.jpg" class="photo">
+        <img src="photo-profil.jpg" class="photo">
       </div>
       <div class="names-profil col-md-6">
         <span class="names"><%= u.getPrenom() %></span><span class="names"> <%= u.getNom() %></span>
@@ -78,37 +79,45 @@
   <div class="thumbnail border shadow padding_top post-options">
   	<div class="row">
             <div class="col-md-2">
-              <img src="merlin.jpg" alt="Avatar du post" class="img-thumbnail height-publi" >
+              <img src="photo-profil.jpg" alt="Avatar du post" class="img-thumbnail height-publi" >
             </div>
             <div class="col-md-10 name-publi">
-            <form name="publication_form connectedText" method="post" action="publi">
+            <form name="publication_form connectedText" method="post" action="/publi">
             	 <div class="form-group">
   				<textarea required="true" class="form-control publi" name="message" rows="3" placeholder="Rock'n Roll Baby !"></textarea>
 				</div>
-				<!-- <input type="hidden" value="id_profil" name="id_profil"> -->
-            	<button type="button" action="publication_form.submit()" class="btn btn-primary col-md-offset-10">Publier</button>
+				<input type="hidden" value="<%= u.getId() %>" name="id"> 
+            	<button type="submit" class="btn btn-primary col-md-offset-10">Publier</button>
             </form>
             </div>
         </div>
   </div>
 
     <!-- Debut zone d'affichage du flux -->
-        <div class="thumbnail border shadow padding_top post-options">
+    	<% 
+    		List<Publication> pList = u.getPublications();
+    		Collections.sort(pList);
+    		for(Publication p : pList) {
+    	%>
+        <div class="thumbnail border shadow padding_top col-md-12">
           <div class="row">
             <div class="col-md-3">
-              <img src="merlin.jpg" alt="Avatar du post" class="img-thumbnail height-105" >
+              <img src="photo-profil.jpg" alt="Avatar du post" class="img-thumbnail height-105" >
             </div>
             <div class="col-md-9 name-publi">
-              <p class="float-left">Merlin l'Enchanteur</p>
+              <p class="float-left"><%= p.getAuteur().getPrenom() + " " + p.getAuteur().getNom() %></p>
               <p class="float-right">Il y a 10 min</p>
             </div>
             <div class=" col-md-9 text-publi">
-              <span>Qu'est ce qui est petit et marron ? </span>
+              <span><%= p.getMessage() %></span>
             </div>
         	</div>
         </div>
+        <%
+    		}
+        %>
 
-        <div class="thumbnail border shadow col-md-10 col-md-offset-2 margin_comment">
+        <!--  <div class="thumbnail border shadow col-md-10 col-md-offset-2 margin_comment">
             <div class="row">
             	<div class="col-md-2">
             		<img src="elias.jpg" alt="Avatar du commentaire" class="img-thumbnail height-comment">
@@ -124,7 +133,7 @@
     		<hr>
     		<div class="row">
             	<div class="col-md-2">
-            		<img src="merlin.jpg" alt="Avatar du commentaire" class="img-thumbnail height-comment">
+            		<img src="photo-profil.jpg" alt="Avatar du commentaire" class="img-thumbnail height-comment">
         		</div>
         		<div class="col-md-10 name-comment">
         			<p class="float-left"> Merlin l'Enchtanteur</p>
@@ -139,7 +148,7 @@
         <div class="thumbnail border shadow padding_top col-md-12">
           <div class="row">
             <div class="col-md-3">
-              <img src="merlin.jpg" alt="Avatar du post" class="img-thumbnail height-105" >
+              <img src="photo-profil.jpg" alt="Avatar du post" class="img-thumbnail height-105" >
             </div>
             <div class="col-md-9 name-publi">
               <p class="float-left">Merlin l'Enchanteur</p>
@@ -149,7 +158,7 @@
               <span>Quand je dis que Rome est à la Cité ce que la chèvre est au fromage de chèvre, je veux dire que c'est le petit plus qu'y est corollaire au noyau mais qui est pas directement dans le cœur du fruit ! </span>
             </div>
           </div>
-        </div>
+        </div>-->
         <!-- Fin Model 2 -->
   </div>
 </div>

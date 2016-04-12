@@ -8,7 +8,7 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
 @Entity
-public class Commentaire implements Serializable{
+public class Commentaire implements Serializable, Comparable<Commentaire>{
     @Id Long id ;
     String message ;
     Ref<Utilisateur> auteurRef ;
@@ -45,4 +45,9 @@ public class Commentaire implements Serializable{
     public void setDateDeCommentaire(Date dateDeCommentaire) {
         this.dateDeCommentaire = dateDeCommentaire;
     }
+
+	@Override
+	public int compareTo(Commentaire c) {
+		return c.getDateDeCommentaire().compareTo(this.dateDeCommentaire);
+	}
 }
