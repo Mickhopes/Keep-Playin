@@ -123,7 +123,7 @@ legend{
 }
 
 .resultats-recherche{
-  margin-top: 50px;
+  margin-top: 10px;
 }
 
 .photo{
@@ -150,6 +150,10 @@ legend{
 
 .pseudo-profil{
   padding: 0px;
+}
+
+.modif-profil{
+  padding: 30px;
 }
 
 .photo-container{
