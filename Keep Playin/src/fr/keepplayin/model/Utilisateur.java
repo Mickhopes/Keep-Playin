@@ -141,8 +141,8 @@ public class Utilisateur implements Serializable, Comparable<Utilisateur>{
         return dpt;
     }
 
-    public Ref<Instrument> getInstrumentPrincipalRef() {
-        return instrumentPrincipalRef;
+    public Instrument getInstrumentPrincipal() {
+        return instrumentPrincipalRef.get();
     }
 
     public Date getDebutApprentissage() {
