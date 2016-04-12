@@ -42,6 +42,8 @@ public class Recherche extends HttpServlet {
 		String recherche = request.getParameter("recherche");
 		// todo : recherche utilisateur
 		
+		
+		// Rediriger sur recherche.jsp avec les résultats
 	}
 
 }

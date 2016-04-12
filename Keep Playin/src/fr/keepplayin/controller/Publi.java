@@ -27,8 +27,8 @@ public class Publi extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/connexion.jsp");
-		dis.forward(request, response);
+//		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/connexion.jsp");
+//		dis.forward(request, response);
 	}
 
 	/**
@@ -38,10 +38,21 @@ public class Publi extends HttpServlet {
 		String msg = request.getParameter("message");
 		HttpSession session = request.getSession();
 		Utilisateur auteur = (Utilisateur)session.getAttribute("utilisateur");
+		Long id = Long.parseLong(request.getParameter("id"));
 		if(auteur != null){
 			Publication publi = new Publication(msg, auteur);
-			// Récupérer profil sur lequel on publie
-			
+			UtilisateurDao userDao = new UtilisateurDao();
+			Utilisateur userProfil = userDao.get(id);
+			userProfil.ajouterPublication(publi);
+			userDao.put(userProfil);
 		}
+		
+		if(id.equals(auteur.getId())){
+			response.sendRedirect("/profil");
+		}
+		else{
+			response.sendRedirect("/profil?id="+id);
+		}
+			
 	}
 }
