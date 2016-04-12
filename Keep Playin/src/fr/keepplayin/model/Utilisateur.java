@@ -30,14 +30,14 @@ public class Utilisateur implements Serializable{
     private List<Ref<Instrument>> instrumentsSecondairesRefs ;
     private List<Ref<StyleMusical>> stylesPreferesRefs ;
     private @Index List<Ref<Utilisateur>> amisRefs ;
-    private List<Publication> publications;
+    private List<Ref<Publication>> publicationsRef;
     private List<Notification> notifications;
     
     public Utilisateur() {
     	instrumentsSecondairesRefs = new ArrayList<Ref<Instrument>>();
     	stylesPreferesRefs = new ArrayList<Ref<StyleMusical>>();
     	amisRefs = new ArrayList<Ref<Utilisateur>>();
-    	publications = new ArrayList<Publication>();
+    	publicationsRef = new ArrayList<Ref<Publication>>();
     	notifications = new ArrayList<Notification>();
     }
 
@@ -53,7 +53,7 @@ public class Utilisateur implements Serializable{
     	instrumentsSecondairesRefs = new ArrayList<Ref<Instrument>>();
     	stylesPreferesRefs = new ArrayList<Ref<StyleMusical>>();
     	amisRefs = new ArrayList<Ref<Utilisateur>>();
-    	publications = new ArrayList<Publication>();
+    	publicationsRef = new ArrayList<Ref<Publication>>();
     	notifications = new ArrayList<Notification>();
     }
     
@@ -90,11 +90,11 @@ public class Utilisateur implements Serializable{
     }
     
     public void ajouterPublication(Publication n) {
-    	publications.add(n);
+    	publicationsRef.add(Ref.create(n));
     }
     
     public void supprimerPublication(Publication n) {
-    	publications.remove(n);
+    	publicationsRef.remove(Ref.create(n));
     }
     
     public Long getId() {
@@ -234,10 +234,22 @@ public class Utilisateur implements Serializable{
 	}
 
 	public List<Publication> getPublications() {
-		return publications;
+		List<Publication> pList = new ArrayList<Publication>();
+		
+		for(Ref<Publication> p : publicationsRef) {
+			pList.add(p.get());
+		}
+		
+		return pList;
 	}
 
 	public void setPublications(List<Publication> publications) {
-		this.publications = publications;
+		List<Ref<Publication>> pList = new ArrayList<Ref<Publication>>();
+		
+		for(Publication p : publications) {
+			pList.add(Ref.create(p));
+		}
+		
+		this.publicationsRef = pList;
 	}
 }

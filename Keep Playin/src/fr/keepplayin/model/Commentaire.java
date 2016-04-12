@@ -13,6 +13,17 @@ public class Commentaire implements Serializable, Comparable<Commentaire>{
     String message ;
     Ref<Utilisateur> auteurRef ;
     Date dateDeCommentaire ;
+    
+    public Commentaire() {
+    	
+    }
+    
+    public Commentaire(String message, Utilisateur auteur) {
+    	this.message = message;
+    	this.auteurRef = Ref.create(auteur);
+    	
+    	dateDeCommentaire = new Date();
+    }
 
     public Long getId() {
         return id;
@@ -22,8 +33,8 @@ public class Commentaire implements Serializable, Comparable<Commentaire>{
         return message;
     }
 
-    public Ref<Utilisateur> getAuteurRef() {
-        return auteurRef;
+    public Utilisateur getAuteur() {
+        return auteurRef.get();
     }
 
     public Date getDateDeCommentaire() {
@@ -38,8 +49,8 @@ public class Commentaire implements Serializable, Comparable<Commentaire>{
         this.message = message;
     }
 
-    public void setAuteurRef(Ref<Utilisateur> auteur) {
-        this.auteurRef = auteur;
+    public void setAuteur(Utilisateur auteur) {
+        this.auteurRef = Ref.create(auteur);
     }
 
     public void setDateDeCommentaire(Date dateDeCommentaire) {

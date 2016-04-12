@@ -11,16 +11,17 @@ import javax.servlet.http.HttpSession;
 
 import fr.keepplayin.dao.PublicationDao;
 import fr.keepplayin.dao.UtilisateurDao;
+import fr.keepplayin.model.Commentaire;
 import fr.keepplayin.model.Publication;
 import fr.keepplayin.model.Utilisateur;
 
-public class Publi extends HttpServlet {
+public class Comm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
    /**
     * Default constructor. 
     */
-   public Publi() {
+   public Comm() {
    	super();
        // TODO Auto-generated constructor stub
    }
@@ -40,15 +41,14 @@ public class Publi extends HttpServlet {
 		HttpSession session = request.getSession();
 		Utilisateur auteur = (Utilisateur)session.getAttribute("utilisateur");
 		Long id = Long.parseLong(request.getParameter("id"));
+		Long id_publi = Long.parseLong(request.getParameter("id_publi"));
+		
 		if(auteur != null){
-			Publication publi = new Publication(msg, auteur);
+			Commentaire comm = new Commentaire(msg, auteur);
 			PublicationDao publiDao = new PublicationDao();
-			publiDao.put(publi);
-			
-			UtilisateurDao userDao = new UtilisateurDao();
-			Utilisateur userProfil = userDao.get(id);
-			userProfil.ajouterPublication(publi);
-			userDao.put(userProfil);
+			Publication p = publiDao.get(id_publi);
+			p.ajouterCommentaire(comm);
+			publiDao.put(p);
 		}
 		
 		if(id.equals(auteur.getId())){

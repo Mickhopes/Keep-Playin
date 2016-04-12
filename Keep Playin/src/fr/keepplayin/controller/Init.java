@@ -3,6 +3,7 @@ package fr.keepplayin.controller;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -14,8 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.keepplayin.dao.InstrumentDao;
+import fr.keepplayin.dao.PublicationDao;
 import fr.keepplayin.dao.StyleMusicalDao;
 import fr.keepplayin.dao.UtilisateurDao;
+import fr.keepplayin.model.Commentaire;
 import fr.keepplayin.model.Instrument;
 import fr.keepplayin.model.Publication;
 import fr.keepplayin.model.Style;
@@ -74,16 +77,6 @@ public class Init extends HttpServlet {
 		} else {
 			response.sendRedirect("/profil");
 		}
-		
-		
-		// On envoi les paramètres à la requête avant de la forward à la jsp
-//		request.setAttribute("currentUrl", "index");
-//		request.setAttribute("mapDoc", map);
-//		if (erreur != null) {
-//			request.setAttribute("erreur", erreur);
-//		}
-		
-		//dis.forward(request, response);
 	}
 
 	/**

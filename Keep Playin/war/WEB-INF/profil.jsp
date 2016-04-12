@@ -1,3 +1,4 @@
+<%@page import="java.util.Locale"%>
 <%@page import="java.util.Collection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -106,60 +107,103 @@
             </div>
             <div class="col-md-9 name-publi">
               <p class="float-left"><%= p.getAuteur().getPrenom() + " " + p.getAuteur().getNom() %></p>
-              <p class="float-right">Il y a 10 min</p>
+              <p class="float-right">
+              <%
+              	long diff = new Date().getTime() - p.getDateDePublication().getTime();
+              	long jours = (diff / (1000*60*60*24));
+              	long heures = (diff / (1000*60*60))%24;
+              	long minutes = (diff / (1000*60))%60;
+              	long secondes = (diff / 1000)%60;
+				
+				String affHeure = "Il y a ";
+				if (jours > 0)
+					affHeure = new SimpleDateFormat("dd MMMM yyyy", Locale.FRANCE).format(p.getDateDePublication());
+				else {
+					if (heures > 0) 
+  					affHeure += heures + " h, ";
+  				if (minutes > 0)
+  					affHeure += minutes + " m, ";
+  				if (secondes > 0)
+  					affHeure += secondes + " s";
+  				if (affHeure.endsWith(", "))
+  					affHeure = affHeure.substring(0, affHeure.length()-2);
+				}
+  			%>
+  			<%= affHeure %>
+              </p>
             </div>
             <div class=" col-md-9 text-publi">
               <span><%= p.getMessage() %></span>
             </div>
-        	</div>
+         </div>
+          <hr />
+    		<div class="row">
+ 				<form name="publication_form connectedText" method="post" action="/comm">
+	           	<div class="form-group col-md-9">
+	 					<input type="text" required="true" class="form-control publi" name="message" placeholder="Quelque chose à dire ?"></textarea>
+				</div>
+				<input type="hidden" value="<%= u.getId() %>" name="id"> 
+				<input type="hidden" value="<%= p.getId() %>" name="id_publi"> 
+	           	<button type="submit" class="btn btn-primary  col-md-2">Commenter</button>
+       			</form>
+    		</div>
         </div>
+    	<%
+    			List<Commentaire> cList = p.getCommentaires();
+    			Collections.sort(cList);
+    			if (!cList.isEmpty()) {
+    	%>
+    				<div class="thumbnail border_comment shadow_comment col-md-10 col-md-offset-2 margin_comment">
+    	<%
+    			}
+    	
+    			for(Commentaire c : cList) {
+    	%>
+    				<div class="row">
+		            	<div class="col-md-2">
+		            		<img src="photo-profil.jpg" alt="Avatar du commentaire" class="img-thumbnail height-comment">
+		        		</div>
+		        		<div class="col-md-10 name-comment">
+		        			<p class="float-left"><%= c.getAuteur().getPrenom() + " " + c.getAuteur().getNom() %></p>
+		        			<p class="float-right">
+		        			<%
+		        				diff = new Date().getTime() - c.getDateDeCommentaire().getTime();
+		        				jours = (diff / (1000*60*60*24));
+		        				heures = (diff / (1000*60*60))%24;
+		        				minutes = (diff / (1000*60))%60;
+		        				secondes = (diff / 1000)%60;
+		        				
+		        				affHeure = "Il y a ";
+		        				if (jours > 0)
+		        					affHeure = new SimpleDateFormat("dd MMMM yyyy", Locale.FRANCE).format(c.getDateDeCommentaire());
+		        				else {
+		        					if (heures > 0) 
+			        					affHeure += heures + " h, ";
+			        				if (minutes > 0)
+			        					affHeure += minutes + " m, ";
+			        				if (secondes > 0)
+			        					affHeure += secondes + " s";
+			        				if (affHeure.endsWith(", "))
+			        					affHeure = affHeure.substring(0, affHeure.length()-2);
+		        				}
+		        			%>
+		        			<%= affHeure %>
+		        			</p>
+		        		</div>
+		        		<div class="col-md-10 text-comment">
+		        			<span><%= c.getMessage() %></span>
+		        		</div>
+	    		    </div>
         <%
+    			}
+    			
+    			if (!cList.isEmpty()) {
+    	%>
+    				</div>
+    	<%
+    			}
     		}
         %>
-
-        <!--  <div class="thumbnail border shadow col-md-10 col-md-offset-2 margin_comment">
-            <div class="row">
-            	<div class="col-md-2">
-            		<img src="elias.jpg" alt="Avatar du commentaire" class="img-thumbnail height-comment">
-        		</div>
-        		<div class="col-md-10 name-comment">
-        			<p class="float-left"> Elias de Kelliwic'h</p>
-        			<p class="float-right"> Il y a 5 min </p>
-        		</div>
-        		<div class="col-md-6 text-comment">
-        			<span> Un marron.</span>
-        		</div>
-    		    </div>
-    		<hr>
-    		<div class="row">
-            	<div class="col-md-2">
-            		<img src="photo-profil.jpg" alt="Avatar du commentaire" class="img-thumbnail height-comment">
-        		</div>
-        		<div class="col-md-10 name-comment">
-        			<p class="float-left"> Merlin l'Enchtanteur</p>
-        			<p class="float-right"> Il y a 3 min </p>
-        		</div>
-        		<div class="col-md-6 text-comment">
-        			<span> Putain il est fort ce con !</span>
-        		</div>
-    		</div>
-		</div>
-
-        <div class="thumbnail border shadow padding_top col-md-12">
-          <div class="row">
-            <div class="col-md-3">
-              <img src="photo-profil.jpg" alt="Avatar du post" class="img-thumbnail height-105" >
-            </div>
-            <div class="col-md-9 name-publi">
-              <p class="float-left">Merlin l'Enchanteur</p>
-              <p class="float-right">Il y a 15 min</p>
-            </div>
-            <div class=" col-md-9 text-publi">
-              <span>Quand je dis que Rome est à la Cité ce que la chèvre est au fromage de chèvre, je veux dire que c'est le petit plus qu'y est corollaire au noyau mais qui est pas directement dans le cœur du fruit ! </span>
-            </div>
-          </div>
-        </div>-->
-        <!-- Fin Model 2 -->
   </div>
 </div>
 
