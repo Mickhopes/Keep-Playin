@@ -90,14 +90,14 @@
         <div class="col-sm-5">
         Ancien mot de passe :
         </div>
-        <div class="col-sm-5"><input id="old-password" name="old-password" type="password">
+        <div class="col-sm-5"><input id="old-password" name="old-password" type="password" value="">
         </div>
      </div>
       <div class="row">
         <div class="col-sm-5">
         Nouveau mot de passe :
       </div>
-      <div class="col-sm-5"><input id="password" name="password" type="password" onkeyup="checkPasswordModif()">
+      <div class="col-sm-5"><input id="password" name="password" type="password" onkeyup="checkPasswordModif()" value="">
      </div>
       </div>
       <div class="row">
@@ -106,7 +106,7 @@
       </div>
       <div class="col-sm-5"><input id="password_conf" name="password_conf" type="password"
           placeholder="Confirmer le mot de passe"
-          onkeyup="checkPasswordModif()">
+          onkeyup="checkPasswordModif()" value="">
         </div>
         <div id="confirmer" class="col-sm-1">
         

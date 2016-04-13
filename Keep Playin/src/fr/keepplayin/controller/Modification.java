@@ -54,7 +54,7 @@ public class Modification extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// On récupère tous les paramètres à changer
+		// On rï¿½cupï¿½re tous les paramï¿½tres ï¿½ changer
 		String prenom = request.getParameter("prenom");
 		String nom = request.getParameter("nom");
 		String nomDeScene = request.getParameter("nomDeScene");
@@ -66,7 +66,7 @@ public class Modification extends HttpServlet {
 		String sexe = request.getParameter("gender");
 		String dpt = request.getParameter("dpt");
 
-		// Tester si l'ancien password est pas le bon : on redirige sur la même jsp avec erreur !
+		// Tester si l'ancien password est pas le bon : on redirige sur la mï¿½me jsp avec erreur !
 		HttpSession session = request.getSession();
 		UtilisateurDao dao = new UtilisateurDao();
 		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
@@ -79,7 +79,9 @@ public class Modification extends HttpServlet {
 					response.sendRedirect("/modif?erreur=mememdp");
 					return;
 				} else {
-					user.setMdp(password);
+					if (password != null && !password.equals("")) {
+						user.setMdp(password);
+					}
 				}
 			}
 		} else {
@@ -89,7 +91,7 @@ public class Modification extends HttpServlet {
 			}
 		}
 		
-		// Sinon on teste les valeurs et on met à jour
+		// Sinon on teste les valeurs et on met ï¿½ jour
 		if (prenom != null && !prenom.equals("")) {
 			user.setPrenom(prenom);
 		}
