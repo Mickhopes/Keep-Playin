@@ -1,0 +1,1 @@
+bash /usr/bin//eclipse4/plugins/com.google.appengine.eclipse.sdkbundle_1.9.30/appengine-java-sdk-1.9.30/bin/appcfg.sh rollback ./
