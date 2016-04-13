@@ -1,5 +1,6 @@
 package fr.keepplayin.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.googlecode.objectify.Ref;
@@ -17,12 +18,23 @@ public class DemandeAmiDao extends BaseDao<DemandeAmi> {
 		
 		for(DemandeAmi d : dList) {
 			if (d.getSource().getId().equals(source.getId()) && d.getCible().getId().equals(cible.getId())) {
-				System.out.println(!d.isAcceptee());
 				return !d.isAcceptee();
 			}
 		}
 		
 		return false;
+	}
+	
+	public DemandeAmi chercherDemande(Utilisateur source, Utilisateur cible) {
+		List<DemandeAmi> dList = super.getAll();
+		
+		for(DemandeAmi d : dList) {
+			if (d.getSource().getId().equals(source.getId()) && d.getCible().getId().equals(cible.getId())) {
+				return d;
+			}
+		}
+		
+		return null;
 	}
 	
 	public int nombreDemandeAttente(Utilisateur cible) {
@@ -36,5 +48,18 @@ public class DemandeAmiDao extends BaseDao<DemandeAmi> {
 		}
 		
 		return i;
+	}
+	
+	public List<DemandeAmi> chercherDemande(Utilisateur cible) {
+		List<DemandeAmi> dList = new ArrayList<DemandeAmi>();
+		List<DemandeAmi> all = super.getAll();
+		
+		for(DemandeAmi d : all) {
+			if (d.getCible().getId().equals(cible.getId()) && !d.isAcceptee()) {
+				dList.add(d);
+			}
+		}
+		
+		return dList;
 	}
 }

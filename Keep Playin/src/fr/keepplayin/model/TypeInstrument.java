@@ -1,4 +1,4 @@
-package fr.keepplayin.model ;
+﻿package fr.keepplayin.model ;
 
 public enum TypeInstrument {
     GUITARESECHE("Guitare sèche", "Corde"),

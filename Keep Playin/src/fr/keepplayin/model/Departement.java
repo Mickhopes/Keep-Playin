@@ -1,4 +1,4 @@
-package fr.keepplayin.model ;
+﻿package fr.keepplayin.model ;
 
 public enum Departement {
     AIN("01","Ain","Auvergne-Rhône-Alpes"),

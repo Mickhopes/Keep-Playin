@@ -42,7 +42,7 @@
     <!-- INFOS -->
     <div class="infos-container col-md-12">
     	<div class="row shadow border infos-details">
-		<label>Instruments</label><a href="#"><span class="badge badge-custom">5</span></a>
+		<label style="padding-left:10px">Instruments</label><a href="#"><span class="badge badge-custom">5</span></a>
 		 <div class="list-group">
 		  <a href="#" class="list-group-item">First item</a>
 		  <a href="#" class="list-group-item">Second item</a>
@@ -50,7 +50,7 @@
 	     </div>
     	</div>
     	<div class="row shadow border infos-details">
-    	<label>Genres de musique</label><a href="#"><span class="badge badge-custom">7</span></a>
+    	<label style="padding-left:10px">Genres de musique</label><a href="#"><span class="badge badge-custom">7</span></a>
     	<div class="list-group">
 		  <a href="#" class="list-group-item">First item</a>
 		  <a href="#" class="list-group-item">Second item</a>
@@ -58,19 +58,19 @@
 	     </div>
     	</div>
     	<div class="row shadow border infos-details">
-    	<label>Amis</label><a href="#"><span class="badge badge-custom">42</span></a>
+    	<%
+    		List<Utilisateur> amisList = u.getAmis();
+    		Collections.sort(amisList);
+    	%>
+    	<label style="padding-left:10px">Amis</label><span class="badge badge-custom"><%= amisList.size() %></span>
     	<div class="list-group">
-		  <a href="#" class="list-group-item">First item</a>
-		  <a href="#" class="list-group-item">Second item</a>
-		  <a href="#" class="list-group-item">Third item</a>
-	     </div>
-    	</div>
-    	<div class="row shadow border infos-details">
-    	<label>Autre</label><a href="#"><span class="badge badge-custom">0</span></a>
-    	<div class="list-group">
-		  <a href="#" class="list-group-item">First item</a>
-		  <a href="#" class="list-group-item">Second item</a>
-		  <a href="#" class="list-group-item">Third item</a>
+    	  <%
+    	  	for(Utilisateur ami : amisList) {
+    	  %>
+			  <a href="/profil?id=<%= ami.getId() %>" class="list-group-item"><%= ami.getPrenom() + " " + ami.getNom() %></a>
+		  <%
+    	  	}
+		  %>
 	     </div>
     	</div>
     </div>
@@ -164,6 +164,9 @@
               <span><%= p.getMessage() %></span>
             </div>
          </div>
+         <%
+         	if (estAmi != null && estAmi || !enVisite) {
+         %>
           <hr />
     		<div class="row">
  				<form name="publication_form connectedText" method="post" action="/comm">
@@ -175,6 +178,9 @@
 	           	<button type="submit" class="btn btn-primary  col-md-2">Commenter</button>
        			</form>
     		</div>
+    	<%
+         	}
+    	%>
         </div>
     	<%
     			List<Commentaire> cList = p.getCommentaires();

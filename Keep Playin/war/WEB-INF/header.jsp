@@ -50,7 +50,7 @@
           <c:if test="${(!empty sessionScope.utilisateur)}">
             <form name="deconnect_form" class="navbar-form navbar-right" action="deconnexion" method="post" style="margin-top:14px;">
             <c:if test="${param.nombreDemande > 0}">
-		  		<a href="/listeDemande"><span class="label label-danger label-as-badge">${ param.nombreDemande }</span></a>
+		  		<a href="/demandeAmi"><span class="label label-danger label-as-badge">${ param.nombreDemande }</span></a>
 		  	</c:if>
             <div class="form-group connectedText"></div>
             <a href="parametres_form.submit()"><span class="glyphicon glyphicon-cog grey"></span></a>

@@ -1,5 +1,6 @@
 package fr.keepplayin.model ;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.googlecode.objectify.Ref;
@@ -8,7 +9,7 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Load;
 
 @Entity
-public class DemandeAmi {
+public class DemandeAmi implements Serializable{
     private @Id Long id ;
     private @Load Ref<Utilisateur> sourceRef ;
     private @Load Ref<Utilisateur> cibleRef ;

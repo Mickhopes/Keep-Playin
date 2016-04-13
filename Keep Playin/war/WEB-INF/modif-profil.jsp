@@ -3,9 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="fr.keepplayin.model.Utilisateur,java.util.List,java.text.SimpleDateFormat,java.util.Date,java.lang.Boolean,fr.keepplayin.model.Publication,fr.keepplayin.model.Commentaire,java.util.Collections, fr.keepplayin.model.Departement, fr.keepplayin.model.Instrument, fr.keepplayin.model.StyleMusical, fr.keepplayin.model.Style, fr.keepplayin.model.Niveau" %>
+<%@ page import="fr.keepplayin.model.Utilisateur,java.util.List,java.text.SimpleDateFormat,java.util.Date,java.lang.Boolean,fr.keepplayin.model.Publication,fr.keepplayin.model.Commentaire,java.util.Collections, fr.keepplayin.model.Departement, fr.keepplayin.model.Instrument, fr.keepplayin.model.StyleMusical, fr.keepplayin.model.Style, fr.keepplayin.model.Niveau,fr.keepplayin.model.TypeInstrument" %>
 <jsp:include page="header.jsp">
-	<jsp:param value="${currentUrl}" name="currentUrl" />
+	<jsp:param value="${sessionScope.nombreDemande}" name="nombreDemande" />
 </jsp:include>
 <c:if test="${!empty erreur}">
 	<span class="error col-md-5 col-md-offset-4"> ${erreur} </span>
@@ -42,7 +42,7 @@
     <!-- INFOS -->
     <div class="infos-container col-md-12">
     	<div class="row shadow border infos-details">
-		<label>Instruments</label><a href="#"><span class="badge badge-custom">5</span></a>
+		<label style="padding-left:10px">Instruments</label><a href="#"><span class="badge badge-custom">5</span></a>
 		 <div class="list-group">
 		  <a href="#" class="list-group-item">First item</a>
 		  <a href="#" class="list-group-item">Second item</a>
@@ -50,7 +50,7 @@
 	     </div>
     	</div>
     	<div class="row shadow border infos-details">
-    	<label>Genres de musique</label><a href="#"><span class="badge badge-custom">7</span></a>
+    	<label style="padding-left:10px">Genres de musique</label><a href="#"><span class="badge badge-custom">7</span></a>
     	<div class="list-group">
 		  <a href="#" class="list-group-item">First item</a>
 		  <a href="#" class="list-group-item">Second item</a>
@@ -58,20 +58,20 @@
 	     </div>
     	</div>
     	<div class="row shadow border infos-details">
-    	<label>Amis</label><a href="#"><span class="badge badge-custom">42</span></a>
+    	<%
+    		List<Utilisateur> amisList = u.getAmis();
+    		Collections.sort(amisList);
+    	%>
+    	<label style="padding-left:10px">Amis</label><span class="badge badge-custom"><%= amisList.size() %></span>
     	<div class="list-group">
-		  <a href="#" class="list-group-item">First item</a>
-		  <a href="#" class="list-group-item">Second item</a>
-		  <a href="#" class="list-group-item">Third item</a>
-	     </div>
+    	  <%
+    	  	for(Utilisateur ami : amisList) {
+    	  %>
+			  <a href="/profil?id=<%= ami.getId() %>" class="list-group-item"><%= ami.getPrenom() + " " + ami.getNom() %></a>
+		  <%
+    	  	}
+		  %>
     	</div>
-    	<div class="row shadow border infos-details">
-    	<label>Autre</label><a href="#"><span class="badge badge-custom">0</span></a>
-    	<div class="list-group">
-		  <a href="#" class="list-group-item">First item</a>
-		  <a href="#" class="list-group-item">Second item</a>
-		  <a href="#" class="list-group-item">Third item</a>
-	     </div>
     	</div>
     </div>
   </div>
@@ -183,9 +183,10 @@
       </div>
       <div class="col-md-4">
         <select name="dpt" value="<%=u.getDpt() != null ? u.getDpt() : ""%>">
+          <option value="">
           <% for(Departement dpt : Departement.values()){
             %>
-            <option value="<%=dpt.getCode()%>">
+            <option value="<%=dpt.getCode()%>"> <%= dpt.getDpt() %>
             <%
           }%>
         </select>
@@ -198,9 +199,10 @@
       </div>
       <div class="col-md-5">
         <select name="instrument-principal" value="<%= u.getInstrumentPrincipal() != null ? u.getInstrumentPrincipal().getType().getNom() : ""%>">
-          <% for(Instrument instrument : u.getInstrumentsSecondaires()){
+          <option value="">
+          <% for(TypeInstrument instrument : TypeInstrument.values()){
             %>
-            <option value="<%=instrument.getType().getNom()%>">
+            <option value="<%=instrument.getNom()%>"> <%= instrument.getNom() %>
             <%
           }%>
         </select>
@@ -212,9 +214,10 @@
       </div>
       <div class="col-md-5">
         <select name="niv-instrument" value="<%=u.getNiveauInstrumentPrincipal() != null ? u.getNiveauInstrumentPrincipal().toString() : ""%>">
+          <option value="">
           <% for(Niveau niv : Niveau.values()){
             %>
-            <option value="<%=niv.toString()%>">
+            <option value="<%=niv.toString()%>"> <%= niv.toString() %>
             <%
           }%>
         </select>
@@ -226,11 +229,13 @@
       </div>
       <div class="col-md-6">
         <select name="jour-apprenti" size="1" value="<%=u.getDebutApprentissage() != null ? new SimpleDateFormat("dd").format(u.getDebutApprentissage()) :""%>">
+          <option value="">
           <c:forEach var="i" begin="1" end="31">
             <option><c:out value="${i}"/>
           </c:forEach>
         </select>
         <select name="mois-apprenti" size="1" value="<%=u.getDebutApprentissage() != null ? new SimpleDateFormat("MM").format(u.getDebutApprentissage()) : ""%>">
+          <option value="">
           <option value="01"> Janvier
           <option value="02"> Février
           <option value="03"> Mars
@@ -245,6 +250,7 @@
           <option value="12"> Décembre
         </select>
         <select name="annee-apprenti" size ="1" value="<%=u.getDebutApprentissage() != null ? new SimpleDateFormat("yyyy").format(u.getDebutApprentissage()) : ""%>">
+          <option value="">
           <c:forEach var="i" begin="1905" end="2016">
             <option><c:out value="${2016-i+1905}"/>
           </c:forEach>

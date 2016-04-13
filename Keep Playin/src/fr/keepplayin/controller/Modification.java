@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.keepplayin.dao.DemandeAmiDao;
 import fr.keepplayin.dao.PublicationDao;
 import fr.keepplayin.dao.UtilisateurDao;
 import fr.keepplayin.model.Publication;
@@ -28,8 +29,21 @@ public class Modification extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/modif-profil.jsp");
-		dis.forward(request, response);
+		UtilisateurDao dao = new UtilisateurDao();
+		DemandeAmiDao daoD = new DemandeAmiDao();
+		HttpSession session = request.getSession();
+		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur");
+		
+		if (u != null) {
+			// On refresh l'utilisateur en session
+			session.setAttribute("utilisateur", dao.get(u.getId()));
+			session.setAttribute("nombreDemande", daoD.nombreDemandeAttente(u));
+			
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/modif-profil.jsp");
+			dis.forward(request, response);
+		} else {
+			response.sendRedirect("/index");
+		}
 	}
 
 	/**

@@ -42,7 +42,11 @@ public class Profil extends HttpServlet {
 			return;
 		}
 
-		String id = request.getParameter("id");
+		Long id = null;
+		if (request.getParameter("id") != null) {
+			id = Long.parseLong(request.getParameter("id"));
+		}
+		
 		Utilisateur user;
 		UtilisateurDao dao = new UtilisateurDao();
 		DemandeAmiDao daoD = new DemandeAmiDao();
@@ -51,8 +55,8 @@ public class Profil extends HttpServlet {
 		session.setAttribute("utilisateur", dao.get(u.getId()));
 		session.setAttribute("nombreDemande", daoD.nombreDemandeAttente(u));
 
-		if (id != null) {
-			user = dao.get(Long.parseLong(id));
+		if (id != null && !id.equals(u.getId())) {
+			user = dao.get(id);
 			
 			if (user == null) {
 				RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/404.jsp");

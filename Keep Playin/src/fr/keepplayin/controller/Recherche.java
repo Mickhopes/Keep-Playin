@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
 
 import fr.keepplayin.dao.UtilisateurDao;
+import fr.keepplayin.model.Niveau;
+import fr.keepplayin.model.TypeInstrument;
 import fr.keepplayin.model.Utilisateur;
 
 /**
@@ -35,9 +37,22 @@ public class Recherche extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String recherche = request.getParameter("recherche");
+		String type = request.getParameter("type");
+		String niveau = request.getParameter("niveau");
+		TypeInstrument t = null;
+		Niveau n = null;
+		
+		if (type != null && !type.equals("")) {
+			t = TypeInstrument.values()[Integer.parseInt(type)];
+		}
+		
+		if (niveau != null && !niveau.equals("")) {
+			n = Niveau.values()[Integer.parseInt(niveau)];
+		}
+		
 		// todo : recherche utilisateur
 		UtilisateurDao userDao = new UtilisateurDao();
-		List<Utilisateur> listeUsers = userDao.chercherUtilisateur(recherche);
+		List<Utilisateur> listeUsers = userDao.chercherUtilisateur(recherche, t, n);
 		
 		request.setAttribute("resultats", listeUsers);
 		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/recherche.jsp");

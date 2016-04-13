@@ -12,17 +12,18 @@ import javax.servlet.http.HttpSession;
 import fr.keepplayin.dao.DemandeAmiDao;
 import fr.keepplayin.dao.PublicationDao;
 import fr.keepplayin.dao.UtilisateurDao;
+import fr.keepplayin.model.Commentaire;
 import fr.keepplayin.model.DemandeAmi;
 import fr.keepplayin.model.Publication;
 import fr.keepplayin.model.Utilisateur;
 
-public class Demande extends HttpServlet {
+public class AjoutAmi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
    /**
     * Default constructor. 
     */
-   public Demande() {
+   public AjoutAmi() {
    	super();
        // TODO Auto-generated constructor stub
    }
@@ -30,43 +31,41 @@ public class Demande extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UtilisateurDao dao = new UtilisateurDao();
-		DemandeAmiDao daoD = new DemandeAmiDao();
-		HttpSession session = request.getSession();
-		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur");
-		
-		if (u != null) {
-			// On refresh l'utilisateur en session
-			session.setAttribute("utilisateur", dao.get(u.getId()));
-			session.setAttribute("nombreDemande", daoD.nombreDemandeAttente(u));
-			session.setAttribute("listeDemandes", daoD.chercherDemande(u));
-			
-			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/demandeAmi.jsp");
-			dis.forward(request, response);
-		} else {
-			response.sendRedirect("/index");
-		}
+//		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/connexion.jsp");
+//		dis.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String msg = request.getParameter("message");
 		HttpSession session = request.getSession();
-		Utilisateur source = (Utilisateur)session.getAttribute("utilisateur");
+		Utilisateur cible = (Utilisateur)session.getAttribute("utilisateur");
 		Long id = Long.parseLong(request.getParameter("id"));
+		Long id_demande = Long.parseLong(request.getParameter("id_demande"));
+		String choix = request.getParameter("choix");
 		
-		if(source != null){
-			UtilisateurDao userDao = new UtilisateurDao();
-			Utilisateur cible = userDao.get(id);
+		if(cible != null){
+			DemandeAmiDao daoD = new DemandeAmiDao();
 			
-			DemandeAmi d = new DemandeAmi(source, cible, msg);
-			DemandeAmiDao demandeDao = new DemandeAmiDao();
-			demandeDao.put(d);
+			if (choix.equals("accepter")) {
+				DemandeAmi d = daoD.get(id_demande);
+				d.setAcceptee(true);
+				daoD.put(d);
+				
+				UtilisateurDao daoU = new UtilisateurDao();
+				Utilisateur source = daoU.get(id);
+				cible.ajouterAmi(source);
+				source.ajouterAmi(cible);
+				daoU.put(cible);
+				daoU.put(source);
+			} else {
+				daoD.delete(id_demande);
+			}
+			
+			response.sendRedirect("/demandeAmi");
+		} else {
+			response.sendRedirect("/index");
 		}
-		
-		response.sendRedirect("/profil?id="+id);
-			
 	}
 }
