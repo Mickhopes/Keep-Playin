@@ -8,7 +8,7 @@
 	<jsp:param value="${sessionScope.nombreDemande}" name="nombreDemande" />
 </jsp:include>
 <c:if test="${!empty erreur}">
-	<span class="error col-md-5 col-md-offset-4"> ${erreur} </span>
+	<span class="error col-sm-5 col-sm-offset-4"> ${erreur} </span>
 </c:if>
 
 <%
@@ -22,25 +22,75 @@
 %>
 
 <div class="container profil-container">
-  <div class="infos-profil col-md-4">
+  <div class="infos-profil col-sm-4">
 
   <!-- AVATAR -->
-    <div class="photo-profil col-md-12 shadow border">
-      <div class="photo-container col-md-6">
-        <img src="photo-profil.jpg" class="photo">
+    <div class="photo-profil col-sm-12 shadow border">
+      <div class="row">
+	      <div class="col-sm-6">
+	        <img src="photo-profil.jpg" class="photo photo-container ">
+	      </div>
+	      <div class="col-sm-6">
+		      <div class="row names-profil">
+		        <span class="names"><%= u.getPrenom() %></span><span class="names"> <%= u.getNom() %></span>
+		      </div>
+		      <div class="row pseudo-profil">
+		        <span class="pseudo"><% if(u.getNomDeScene() == null) { out.print("Aucun nom de scène"); } else { out.print(u.getNomDeScene()); } %></span>
+		      </div>
+		      <div class="row birthday-profil">
+		        <span class="birthday-info">Né(e) le <%= new SimpleDateFormat("dd/MM/yyyy").format(u.getDateDeNaissance()) %></span>
+		      </div>
+		      <div class="row">
+		        <span>Sexe: <%= u.getSexe() %></span>
+		      </div>
+		      <%
+		      	if (u.getDpt() != null) {
+		      %>
+		      <div class="row">
+		        <span>Département: <%= u.getDpt().getDpt() %></span>
+		      </div>
+		      <%
+		      	}
+		      %>
+	      </div>
       </div>
-      <div class="names-profil col-md-6">
-        <span class="names"><%= u.getPrenom() %></span><span class="names"> <%= u.getNom() %></span>
+      <%
+      	if (!enVisite) {
+      %>
+      <hr>
+      <div class="row">
+      	<div class="col-sm-12 lien-profil">
+      		<a href="/modif"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Modifier mon profil</a>
+      	</div>
       </div>
-      <div class="pseudo-profil col-md-6">
-        <span class="pseudo"><% if(u.getNomDeScene() == null) { out.print("Aucun nom de scène"); } else { out.print(u.getNomDeScene()); } %></span>
+      <hr>
+      <div class="row">
+      	<div class="col-sm-12 lien-profil" style="padding-bottom:15px;">
+      		<a href="/modifInstrument"><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> Gérer mes instruments</a>
+      	</div>
       </div>
-      <div class="birthday-profil col-md-6">
-        <span class="birthday-info"> <%= new SimpleDateFormat("dd/MM/yyyy").format(u.getDateDeNaissance()) %></span>
+      <%
+      	}
+      
+      	Boolean estAmi = (Boolean) session.getAttribute("ami");
+      	if (estAmi != null && estAmi)
+        {
+      %>
+      <hr>
+      <div class="row">
+      	<div class="col-sm-4 col-sm-offset-4" style="padding-bottom:15px;">
+      		<form action="/supprimerAmi" method="post">
+      			<input type="hidden" name="id" value="<%= u.getId() %>">
+      			<button class="btn btn-danger">Ne plus être ami</button>
+      		</form>
+      	</div>
       </div>
+      <%
+      	}
+      %>
     </div>
     <!-- INFOS -->
-    <div class="infos-container col-md-12">
+    <div class="infos-container col-sm-12">
     	<div class="row shadow border infos-details">
 		<label style="padding-left:10px">Instruments</label><a href="#"><span class="badge badge-custom">5</span></a>
 		 <div class="list-group">
@@ -76,23 +126,22 @@
     </div>
   </div>
 
-  <div class="publis-profil col-md-8">
+  <div class="publis-profil col-sm-8">
   <%
-  	Boolean estAmi = (Boolean) session.getAttribute("ami");
   	if (estAmi != null && estAmi || !enVisite) {
   %>
   	<div class="thumbnail border shadow padding_top post-options">
   	<div class="row">
-         <div class="col-md-2">
+         <div class="col-sm-2">
            <img src="photo-profil.jpg" alt="Avatar du post" class="img-thumbnail height-publi" >
          </div>
-         <div class="col-md-10 name-publi">
+         <div class="col-sm-10 name-publi">
          <form name="publication_form connectedText" method="post" action="/publi">
          	 <div class="form-group">
 				<textarea required="true" class="form-control publi" name="message" rows="3" placeholder="Rock'n Roll Baby !"></textarea>
 			</div>
 			<input type="hidden" value="<%= u.getId() %>" name="id"> 
-         	<button type="submit" class="btn btn-primary col-md-offset-10">Publier</button>
+         	<button type="submit" class="btn btn-primary col-sm-offset-10">Publier</button>
          </form>
          </div>
       </div>
@@ -105,13 +154,13 @@
   %>
   	<div class="thumbnail border shadow padding_top post-options">
   		<div class="row">
-         <div class="col-md-12 name-publi">
+         <div class="col-sm-12 name-publi">
          <form name="publication_form connectedText" method="post" action="/demandeAmi">
          	 <div class="form-group">
 				<textarea required="true" class="form-control publi" name="message" rows="3">Bonjour, je souhaiterais vous ajouter dans ma liste d'amis !</textarea>
 			</div>
 			<input type="hidden" value="<%= u.getId() %>" name="id"> 
-         	<button type="submit" class="btn btn-success col-md-offset-5 col-md-2">Ajouter en ami</button>
+         	<button type="submit" class="btn btn-success col-sm-offset-5 col-sm-2">Ajouter en ami</button>
          </form>
          </div>
       </div>
@@ -128,12 +177,12 @@
     		Collections.sort(pList);
     		for(Publication p : pList) {
     	%>
-        <div class="thumbnail border shadow padding_top col-md-12">
+        <div class="thumbnail border shadow padding_top col-sm-12">
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-sm-3">
               <img src="photo-profil.jpg" alt="Avatar du post" class="img-thumbnail height-105" >
             </div>
-            <div class="col-md-9 name-publi">
+            <div class="col-sm-9 name-publi">
               <p class="float-left"><%= p.getAuteur().getPrenom() + " " + p.getAuteur().getNom() %></p>
               <p class="float-right">
               <%
@@ -160,7 +209,7 @@
   			<%= affHeure %>
               </p>
             </div>
-            <div class=" col-md-9 text-publi">
+            <div class=" col-sm-9 text-publi">
               <span><%= p.getMessage() %></span>
             </div>
          </div>
@@ -170,12 +219,12 @@
           <hr />
     		<div class="row">
  				<form name="publication_form connectedText" method="post" action="/comm">
-	           	<div class="form-group col-md-9">
+	           	<div class="form-group col-sm-9">
 	 					<input type="text" required="true" class="form-control publi" name="message" placeholder="Quelque chose à dire ?"></textarea>
 				</div>
 				<input type="hidden" value="<%= u.getId() %>" name="id"> 
 				<input type="hidden" value="<%= p.getId() %>" name="id_publi"> 
-	           	<button type="submit" class="btn btn-primary  col-md-2">Commenter</button>
+	           	<button type="submit" class="btn btn-primary  col-sm-2">Commenter</button>
        			</form>
     		</div>
     	<%
@@ -187,17 +236,17 @@
     			Collections.sort(cList);
     			if (!cList.isEmpty()) {
     	%>
-    				<div class="thumbnail border_comment shadow_comment col-md-10 col-md-offset-2 margin_comment">
+    				<div class="thumbnail border_comment shadow_comment col-sm-10 col-sm-offset-2 margin_comment">
     	<%
     			}
     	
     			for(Commentaire c : cList) {
     	%>
     				<div class="row">
-		            	<div class="col-md-2">
+		            	<div class="col-sm-2">
 		            		<img src="photo-profil.jpg" alt="Avatar du commentaire" class="img-thumbnail height-comment">
 		        		</div>
-		        		<div class="col-md-10 name-comment">
+		        		<div class="col-sm-10 name-comment">
 		        			<p class="float-left"><%= c.getAuteur().getPrenom() + " " + c.getAuteur().getNom() %></p>
 		        			<p class="float-right">
 		        			<%
@@ -224,7 +273,7 @@
 		        			<%= affHeure %>
 		        			</p>
 		        		</div>
-		        		<div class="col-md-10 text-comment">
+		        		<div class="col-sm-10 text-comment">
 		        			<span><%= c.getMessage() %></span>
 		        		</div>
 	    		    </div>

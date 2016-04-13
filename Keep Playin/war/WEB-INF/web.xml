@@ -50,6 +50,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet>
 	
 	<servlet>
+		<servlet-name>SupprimerAmi</servlet-name>
+		<servlet-class>fr.keepplayin.controller.SupprimerAmi</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>ModifInstrument</servlet-name>
+		<servlet-class>fr.keepplayin.controller.ModifInstrument</servlet-class>
+	</servlet>
+	
+	<servlet>
 		<servlet-name>Deconnexion</servlet-name>
 		<servlet-class>fr.keepplayin.controller.Deconnexion</servlet-class>
 	</servlet>
@@ -95,8 +105,18 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	
 	<servlet-mapping>
+		<servlet-name>SupprimerAmi</servlet-name>
+		<url-pattern>/supprimerAmi</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
 		<servlet-name>Modification</servlet-name>
 		<url-pattern>/modif</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>ModifInstrument</servlet-name>
+		<url-pattern>/modifInstrument</url-pattern>
 	</servlet-mapping>
 	
 	<servlet-mapping>

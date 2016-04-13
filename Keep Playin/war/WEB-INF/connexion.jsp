@@ -9,7 +9,7 @@
 <div class="container">
 
 	<!--  code généré grâce au site  -->
-	<form class="form-horizontal col-md-4 col-md-offset-4 connexion-form"
+	<form class="form-horizontal col-sm-4 col-sm-offset-4 connexion-form"
 		id="form_inscription" action="connexion" method="post">
 		<fieldset>
 

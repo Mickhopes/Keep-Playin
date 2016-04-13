@@ -112,6 +112,11 @@ legend{
   font-weight: bolder;
 }
 
+.connectedText {
+	color: white;
+	padding-bottom: 4px;
+}
+
 .profil-container{
   padding-top: 50px;
   /*border: 1px solid;*/
@@ -158,7 +163,7 @@ legend{
 }
 
 .pseudo-profil{
-  padding: 0px;
+  padding: 0px 0px 10px 0px;
 }
 
 .modif-profil{
@@ -166,7 +171,11 @@ legend{
 }
 
 .photo-container{
-  padding: 5px;
+	padding: 2px;
+}
+
+.lien-profil {
+	text-align: center;
 }
 
 .birthday-profil{

@@ -5,11 +5,11 @@
 	<jsp:param value="${currentUrl}" name="currentUrl" />
 </jsp:include>
 <c:if test="${!empty erreur}">
-	<span class="error col-md-5 col-md-offset-4"> ${erreur} </span>
+	<span class="error col-sm-5 col-sm-offset-4"> ${erreur} </span>
 </c:if>
 
   <div class="container index-container">
-	 	<div class="col-md-5 jumbo">
+	 	<div class="col-sm-5 jumbo">
       <!-- <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
@@ -52,7 +52,7 @@
         </div>
       </div> -->
 
-      <div class="col-md-6 col-md-offset-1">
+      <div class="col-sm-6 col-sm-offset-1">
 
         <c:choose>
           <c:when test="${empty param.etat}">

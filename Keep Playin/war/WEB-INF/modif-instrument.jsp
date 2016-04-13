@@ -10,6 +10,71 @@
 </c:if>
 
 <div class="row">
+        <div class="col-sm-4">
+        Instrument principal :
+      </div>
+      <div class="col-sm-5">
+        <select name="instrument-principal" value="<%= u.getInstrumentPrincipal() != null ? u.getInstrumentPrincipal().getType().getNom() : ""%>">
+          <option value="">
+          <% for(TypeInstrument instrument : TypeInstrument.values()){
+            %>
+            <option value="<%=instrument.getNom()%>"> <%= instrument.getNom() %>
+            <%
+          }%>
+        </select>
+      </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+        Niveau instrument principal :
+      </div>
+      <div class="col-sm-5">
+        <select name="niv-instrument" value="<%=u.getNiveauInstrumentPrincipal() != null ? u.getNiveauInstrumentPrincipal().toString() : ""%>">
+          <option value="">
+          <% for(Niveau niv : Niveau.values()){
+            %>
+            <option value="<%=niv.toString()%>"> <%= niv.toString() %>
+            <%
+          }%>
+        </select>
+      </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+        Date de début d'apprentissage :
+      </div>
+      <div class="col-sm-6">
+        <select name="jour-apprenti" size="1" value="<%=u.getDebutApprentissage() != null ? new SimpleDateFormat("dd").format(u.getDebutApprentissage()) :""%>">
+          <option value="">
+          <c:forEach var="i" begin="1" end="31">
+            <option><c:out value="${i}"/>
+          </c:forEach>
+        </select>
+        <select name="mois-apprenti" size="1" value="<%=u.getDebutApprentissage() != null ? new SimpleDateFormat("MM").format(u.getDebutApprentissage()) : ""%>">
+          <option value="">
+          <option value="01"> Janvier
+          <option value="02"> Février
+          <option value="03"> Mars
+          <option value="04"> Avril
+          <option value="05"> Mai
+          <option value="06"> Juin
+          <option value="07"> Juillet
+          <option value="08"> Août
+          <option value="09"> Septembre
+          <option value="10"> Octobre
+          <option value="11"> Novembre
+          <option value="12"> Décembre
+        </select>
+        <select name="annee-apprenti" size ="1" value="<%=u.getDebutApprentissage() != null ? new SimpleDateFormat("yyyy").format(u.getDebutApprentissage()) : ""%>">
+          <option value="">
+          <c:forEach var="i" begin="1905" end="2016">
+            <option><c:out value="${2016-i+1905}"/>
+          </c:forEach>
+        </select>
+      </div>
+      </div>
+
+<div class="row">
 <div class="resultats-recherche col-sm-6 col-sm-offset-3">
 	<form name="recherche-form" action="/recherche" method="get">
 	<div class="row">
@@ -84,7 +149,7 @@
 			%>
 		</div>
 		<div class="row col-sm-12">
-			<%if(u.getNomDeScene() == null) {%>Aucun nom de scène<%}else { out.print(u.getNomDeScene()); }%>
+			<%if(u.getNomDeScene() == null)%>Aucun nom de scène<%else %>u.getNomDeScene()%>
 		</div>
 		<hr>
 		<div class="row">

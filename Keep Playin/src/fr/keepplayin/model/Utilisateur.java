@@ -76,8 +76,8 @@ public class Utilisateur implements Serializable, Comparable<Utilisateur>{
     	amisRefs.add(Ref.create(u));
     }
     
-    public void supprimerAmi(Ref<Utilisateur> u) {
-    	amisRefs.remove(u);
+    public void supprimerAmi(Utilisateur u) {
+    	amisRefs.remove(Ref.create(u));
     }
     
     public boolean estAmi(Utilisateur u) {

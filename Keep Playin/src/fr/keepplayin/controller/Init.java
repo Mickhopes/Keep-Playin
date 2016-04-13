@@ -93,7 +93,7 @@ public class Init extends HttpServlet {
 		String genre = request.getParameter("gender");
 
 		if (mail != null && password != null && prenom != null && nom!= null && jour_birthday != null && mois_birthday != null && annee_birthday != null & genre != null) {
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			String birthday;
 			if(Integer.parseInt(jour_birthday) < 10){
 				birthday = "0"+jour_birthday+"/"+mois_birthday+"/"+annee_birthday;

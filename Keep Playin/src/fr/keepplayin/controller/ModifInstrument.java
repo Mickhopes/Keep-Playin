@@ -1,9 +1,6 @@
 package fr.keepplayin.controller;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,17 +12,16 @@ import javax.servlet.http.HttpSession;
 import fr.keepplayin.dao.DemandeAmiDao;
 import fr.keepplayin.dao.PublicationDao;
 import fr.keepplayin.dao.UtilisateurDao;
-import fr.keepplayin.model.Departement;
 import fr.keepplayin.model.Publication;
 import fr.keepplayin.model.Utilisateur;
 
-public class Modification extends HttpServlet {
+public class ModifInstrument extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
    /**
     * Default constructor. 
     */
-   public Modification() {
+   public ModifInstrument() {
    	super();
        // TODO Auto-generated constructor stub
    }
@@ -54,7 +50,7 @@ public class Modification extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// On récupère tous les paramètres à changer
+		// On rÃ©cupÃ¨re tous les paramÃ¨tres Ã  changer
 		String prenom = request.getParameter("prenom");
 		String nom = request.getParameter("nom");
 		String nomDeScene = request.getParameter("nomDeScene");
@@ -65,72 +61,20 @@ public class Modification extends HttpServlet {
 		String annee = request.getParameter("annee");
 		String sexe = request.getParameter("gender");
 		String dpt = request.getParameter("dpt");
+		String instrumentPrincipal = request.getParameter("instrument-principal");
+		String niveauInstrument = request.getParameter("niv-instrument");
+		String jourApprenti = request.getParameter("jour-apprenti");
+		String moisApprenti = request.getParameter("mois-apprenti");
+		String anneeApprenti = request.getParameter("annee-apprenti");
 
-		// Tester si l'ancien password est pas le bon : on redirige sur la même jsp avec erreur !
-		HttpSession session = request.getSession();
-		UtilisateurDao dao = new UtilisateurDao();
-		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
-		if (oldPassword != null && !oldPassword.equals("")) {
-			if (!user.getMdp().equals(oldPassword)) {
-				response.sendRedirect("/modif?erreur=mauvaismdp");
-				return;
-			} else {
-				if (oldPassword.equals(password)) {
-					response.sendRedirect("/modif?erreur=mememdp");
-					return;
-				} else {
-					user.setMdp(password);
-				}
-			}
-		} else {
-			if (password != null && !password.equals("")) {
-				response.sendRedirect("/modif?erreur=ancienmdp");
-				return;
-			}
-		}
+		// Tester si l'ancien password est pas le bon : on redirige sur la mÃªme jsp avec erreur !
 		
-		// Sinon on teste les valeurs et on met à jour
-		if (prenom != null && !prenom.equals("")) {
-			user.setPrenom(prenom);
-		}
+		// Sinon on teste les valeurs et on met Ã  jour
 		
-		if (nom != null && !nom.equals("")) {
-			user.setNom(nom);
-		}
 		
-		if (nomDeScene != null && !nomDeScene.equals("")) {
-			user.setNomDeScene(nomDeScene);
-		}
 		
-		if (sexe != null && !sexe.equals("")) {
-			user.setSexe(sexe);
-		}
 		
-		if (dpt != null && !dpt.equals("")) {
-			user.setDpt(Departement.values()[Integer.parseInt(dpt)]);
-		}
-		
-		String naissance;
-		if (jour != null && mois != null && annee != null) {
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-			if(Integer.parseInt(jour) < 10){
-				naissance = "0"+jour+"/"+mois+"/"+annee;
-			}
-			else{
-				naissance = jour+"/"+mois+"/"+annee;
-			}
-			try{
-				Date naissanceDate = formatter.parse(naissance);
-				user.setDateDeNaissance(naissanceDate);
-			}catch(ParseException e){
-				e.printStackTrace();
-			}
-		}
-		
-		// On sauvegarde l'utilisateur
-		dao.put(user);
-		
-		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/profil.jsp");
-		dis.forward(request, response);
+//		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/profil.jsp");
+//		dis.forward(request, response);
 	}
 }
