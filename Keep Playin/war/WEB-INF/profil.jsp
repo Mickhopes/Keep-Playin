@@ -52,6 +52,22 @@
 		      <%
 		      	}
 		      %>
+		      
+		      <%
+		      	if (u.getInstrumentPrincipal() != null) {
+		      %>
+		      <div class="row" style="padding-top:10px;">
+		        	<span>Instrument principal: <%= u.getInstrumentPrincipal().getType().getNom() %></span>
+		      </div>
+		      <div class="row" >
+		        	<span>Niveau: <%= u.getNiveauInstrumentPrincipal().toString() %></span>
+		      </div>
+		      <div class="row">
+		        	<span>Date de début: <%= new SimpleDateFormat("dd/MM/yyyy").format(u.getDebutApprentissage()) %></span>
+		      </div>
+		      <%
+		      	}
+		      %>
 	      </div>
       </div>
       <%

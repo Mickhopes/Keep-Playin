@@ -1,6 +1,9 @@
 package fr.keepplayin.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,10 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.keepplayin.dao.DemandeAmiDao;
+import fr.keepplayin.dao.InstrumentDao;
 import fr.keepplayin.dao.PublicationDao;
 import fr.keepplayin.dao.UtilisateurDao;
+import fr.keepplayin.model.Instrument;
 import fr.keepplayin.model.Publication;
 import fr.keepplayin.model.Utilisateur;
+import fr.keepplayin.model.Niveau;
+import fr.keepplayin.model.TypeInstrument;
 
 public class ModifInstrument extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -30,16 +37,14 @@ public class ModifInstrument extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UtilisateurDao dao = new UtilisateurDao();
-		DemandeAmiDao daoD = new DemandeAmiDao();
 		HttpSession session = request.getSession();
 		Utilisateur u = (Utilisateur) session.getAttribute("utilisateur");
 		
 		if (u != null) {
 			// On refresh l'utilisateur en session
 			session.setAttribute("utilisateur", dao.get(u.getId()));
-			session.setAttribute("nombreDemande", daoD.nombreDemandeAttente(u));
 			
-			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/modif-profil.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/modif-instrument.jsp");
 			dis.forward(request, response);
 		} else {
 			response.sendRedirect("/index");
@@ -51,30 +56,57 @@ public class ModifInstrument extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// On récupère tous les paramètres à changer
-		String prenom = request.getParameter("prenom");
-		String nom = request.getParameter("nom");
-		String nomDeScene = request.getParameter("nomDeScene");
-		String oldPassword = request.getParameter("old-password");
-		String password = request.getParameter("password");
-		String jour = request.getParameter("jour");
-		String mois = request.getParameter("mois");
-		String annee = request.getParameter("annee");
-		String sexe = request.getParameter("gender");
-		String dpt = request.getParameter("dpt");
 		String instrumentPrincipal = request.getParameter("instrument-principal");
 		String niveauInstrument = request.getParameter("niv-instrument");
 		String jourApprenti = request.getParameter("jour-apprenti");
 		String moisApprenti = request.getParameter("mois-apprenti");
 		String anneeApprenti = request.getParameter("annee-apprenti");
+		
 
-		// Tester si l'ancien password est pas le bon : on redirige sur la même jsp avec erreur !
+		HttpSession session = request.getSession();
+		UtilisateurDao daoU = new UtilisateurDao();
+		InstrumentDao daoI = new InstrumentDao();
+		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
 		
-		// Sinon on teste les valeurs et on met à jour
+		if (instrumentPrincipal != null && !instrumentPrincipal.equals("")) {
+			Instrument i = daoI.chercherInstrumentPrincipal(user);
+			Instrument select = daoI.chercherInstrument(TypeInstrument.values()[Integer.parseInt(instrumentPrincipal)]);
+
+			if (i != null && i.getType() != select.getType()) {
+				i.supprimerPratiquantPrincipal(user);
+				daoI.put(i);
+			}
+
+			select.ajouterPratiquantPrincipal(user);
+			daoI.put(select);
+			
+			user.setInstrumentPrincipal(select);
+			user.setNiveauInstrumentPrincipal(Niveau.values()[Integer.parseInt(niveauInstrument)]);
+			
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			String naissance;
+			if(Integer.parseInt(jourApprenti) < 10){
+				naissance = "0"+jourApprenti+"/"+moisApprenti+"/"+anneeApprenti;
+			}
+			else{
+				naissance = jourApprenti+"/"+moisApprenti+"/"+anneeApprenti;
+			}
+			try{
+				Date apprentissageDate = formatter.parse(naissance);
+				user.setDebutApprentissage(apprentissageDate);
+			}catch(ParseException e){
+				e.printStackTrace();
+			}
+			daoU.put(user);
+			
+		} else {
+			Instrument i = daoI.chercherInstrumentPrincipal(user);
+			if (i != null) {
+				i.supprimerPratiquantPrincipal(user);
+				user.setInstrumentPrincipal(null);
+			}
+		}
 		
-		
-		
-		
-//		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/profil.jsp");
-//		dis.forward(request, response);
+		response.sendRedirect("/profil");
 	}
 }

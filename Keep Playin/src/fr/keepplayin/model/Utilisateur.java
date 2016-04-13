@@ -233,7 +233,11 @@ public class Utilisateur implements Serializable, Comparable<Utilisateur>{
     }
 
     public void setInstrumentPrincipal(Instrument instrumentPrincipal) {
-        this.instrumentPrincipalRef = Ref.create(instrumentPrincipal);
+    	if (instrumentPrincipal == null) {
+    		this.instrumentPrincipalRef = null;
+    	} else {
+    		this.instrumentPrincipalRef = Ref.create(instrumentPrincipal);
+    	}
     }
 
     public void setDebutApprentissage(Date debutApprentissage) {
