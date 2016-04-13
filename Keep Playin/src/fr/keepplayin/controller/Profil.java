@@ -71,6 +71,7 @@ public class Profil extends HttpServlet {
 			}
 		} else {
 			session.setAttribute("visite", Boolean.FALSE);
+			session.removeAttribute("ami");
 		}
 
 		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/profil.jsp");
