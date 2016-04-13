@@ -52,7 +52,7 @@
             <c:if test="${param.nombreDemande > 0}">
 		  		<a href="/demandeAmi"><span class="label label-danger label-as-badge">${ param.nombreDemande }</span></a>
 		  	</c:if>
-            <div class="form-group connectedText">${ sessionScope.utilisateur.prenom } ${ sessionScope.utilisateur.nom}</div>
+            <div class="form-group connectedText"><a href="/profil">${ sessionScope.utilisateur.prenom } ${ sessionScope.utilisateur.nom}</a></div>
             <a onClick="deconnect_form.submit()"><span class="glyphicon glyphicon-log-out red cliquable" style="padding-left:10px;"></span></a>
           </form>
           </c:if>
