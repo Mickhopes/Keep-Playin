@@ -64,6 +64,12 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-class>fr.keepplayin.controller.Deconnexion</servlet-class>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>AfficheInstrument</servlet-name>
+		<servlet-class>fr.keepplayin.controller.AfficheInstrument</servlet-class>
+	</servlet>
+	
+	
 	<servlet-mapping>
 		<servlet-name>Init</servlet-name>
 		<url-pattern>/index</url-pattern>
@@ -122,6 +128,11 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>AjoutAmi</servlet-name>
 		<url-pattern>/ajoutAmi</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>AfficheInstrument</servlet-name>
+		<url-pattern>/instrument</url-pattern>
 	</servlet-mapping>
 	
 	<welcome-file-list>

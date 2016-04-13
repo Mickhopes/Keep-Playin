@@ -1,0 +1,46 @@
+<!-- <%
+          if(instrument.equals("GUITARESECHE"){%>
+	        <img src="/images/guitare-seche.png" class="photo photo-container ">
+          <%}
+          else if(instrument.equals("GUITAREELECTRIQUE")){%>
+          <img src="/images/guitare-electrique.png" class="photo photo-container">
+          <%}
+          else if(instrument.equals("BASSE")){%>
+          <img src="/images/basse.png" class="photo photo-container">
+          <%}
+          else if(instrument.equals("BATTERIE")){%>
+          <img src="/images/batterie.png" class="photo photo-container">
+          <%}
+          else if(instrument.equals("CONTREBASSE")){%>
+          <img src="/images/contrebasse.png" class="photo photo-container">
+          <%}
+          else if(instrument.equals("FLUTEABEC")){%>
+          <img src="/images/flute-a-bec.png" class="photo photo-container">
+          <%}
+          else if(instrument.equals("FLUTEDEPAN")){%>
+          <img src="/images/flute-de-pan.png" class="photo photo-container">
+          <%}
+          else if(instrument.equals("FLUTETRAVERSIERE")){%>
+          <img src="/images/flute-traversiere.png" class="photo photo-container">
+          <%}
+          else if(instrument.equals("HARPE")){%>
+          <img src="/images/harpe.png" class="photo photo-container">
+          <%}
+          else if(instrument.equals("PIANO")){%>
+          <img src="/images/piano.png" class="photo photo-container">
+          <%}
+          else if(instrument.equals("THEREMINE")){%>
+          <img src="/images/theremine.png" class="photo photo-container">
+          <%}
+          else if(instrument.equals("VIOLON")){%>
+          <img src="/images/violon.png" class="photo photo-container">
+          <%}
+          else if(instrument.equals("VIOLONCELLE")){%>
+          <img src="/images/violoncelle.png" class="photo photo-container">
+          <%}
+          else if(instrument.equals("SYNTHETISEUR")){%>
+          <img src="/images/synthetiseur.png" class="photo photo-container">
+          <%}
+          else if(instrument.equals("ALTO")){%>
+          <img src="/images/alto.png" class="photo photo-container">
+          <%}%>-->
